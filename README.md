@@ -1,2 +1,0 @@
-# FFR
-FCode Face Recognition
