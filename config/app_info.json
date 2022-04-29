@@ -1,0 +1,11 @@
+{
+  "name": "FFR",
+  "description": "FCode Face Recognition",
+  "home-url": "/FFR",
+  "database-connection-info": {
+    "database": "ffr",
+    "hostname": "localhost",
+    "username": "root",
+    "password": "Lethanhlong03"
+  }
+}
