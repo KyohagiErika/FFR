@@ -1391,4 +1391,3 @@
 <!-- require './view/about_section.php'; -->
 <!-- require './view/team_section.php'; -->
 <!-- require './view/contact_section.php'; -->
-
