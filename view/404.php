@@ -1,4 +1,3 @@
-<h1>This is 404!</h1>
 <section class="bg-white py-14 lg:py-20">
     <div class="container">
         <div class="flex flex-wrap -mx-4">
