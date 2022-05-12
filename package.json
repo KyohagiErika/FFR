@@ -1,0 +1,31 @@
+{
+  "name": "ffr",
+  "version": "1.0.0",
+  "description": "FFR - FCode Face Recognition",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "start:live": "nodemon src/app.js",
+    "test": "mocha test/*.test.js"
+  },
+  "keywords": [
+    "academic",
+    "machine learning",
+    "ai",
+    "nodejs",
+    "face recognition"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.5",
+    "mongodb": "^4.6.0",
+    "mongoose": "^6.3.3"
+  },
+  "devDependencies": {
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.16"
+  }
+}
