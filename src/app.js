@@ -16,9 +16,7 @@ app.set('view engine', 'handlebars')
 // End Express Initialization
 
 // Express Routing
-app.get('/', (req, res) => {
-    res.status(200).send('Hello World!')
-})
+app.use('/', require('./routes/index'))
 // End Express Routing
 
 // 404 - Not Found Error
@@ -29,6 +27,7 @@ app.use((req, res, next) => {
 
 // 500 - Server Error
 app.use((err, req, res, next) => {
+    console.log(err)
     res.status(500).end()
 })
 // 500 - End Server Error
