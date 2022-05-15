@@ -1,0 +1,33 @@
+/* =======
+
+	Template Name: Play Bootstrap
+	Author: UIdeck
+	Author URI: https://uideck.com/
+	Support: https://github.com/uideck/
+	Version: 1.0
+
+======== */
+
+@import "variables";
+@import "mixin";
+@import "common";
+@import "header";
+@import "hero";
+@import "features";
+@import "about";
+
+
+@import "team";
+
+@import "footer";
+@import "banner";
+
+
+
+// @import "default";
+.particles-js-canvas-el{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
