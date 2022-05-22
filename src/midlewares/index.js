@@ -1,4 +1,5 @@
 const out = require('../lib/out')
+const RSC = require('../lib/response-status-code')
 
 /**
  * Render Home Page
@@ -34,7 +35,7 @@ const renderSignIn = (req, res) => {
  * @param {Function} next - next() function
  */
 const render404 = (req, res, next) => {
-    res.status(404).send({ message: 'Not Found!' })
+    res.status(RSC.NOT_FOUND).send({ message: 'Not Found!' })
 }
 
 /**
@@ -45,8 +46,12 @@ const render404 = (req, res, next) => {
  * @param {Function} next - next() function
  */
 const render500 = (err, req, res, next) => {
-    out.log(out.danger(err))
-    res.status(500).send({ message: 'Server Error!' })
+    console.log(err)
+    if (req.xhr) {
+        res.status(RSC.SERVER_ERROR).send(err)
+    } else {
+        res.status(RSC.SERVER_ERROR).send(err)
+    }
 }
 
 exports.renderHome = renderHome

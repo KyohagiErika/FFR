@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{{body}}}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    axios({
+        url: '/student',
+        method: '/get',
+        data: {
+            studentId: 'SE172125'
+        }
+    }).then(res => {
+
+    })
+    const mainForm = document.getElementById('mainForm')
+    document.getElementById('mainFormSubmit').addEventListener('click', (e) => {
+        const data = new FormData(mainForm)
+        const studentData = new FormData()
+        {
+            studentId: 'SE172831',
+            name: 'Losd Asd',
+            email: 'asdwd@asdasd.asd',
+            phone: '0931239302',
+            gender: 'FEMALE'
+        }
+        const dataObj = {
+            studentId: data.studentId
+        }
+        request('/student', 'post', (res) => {
+            console.log(res.statusCode)
+            console.log(res.responseText)
+        }, data)
+    })
+</script>
+</body>
+</html>

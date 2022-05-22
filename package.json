@@ -7,7 +7,8 @@
     "start": "node src/app.js",
     "start:live": "nodemon src/app.js",
     "test": "mocha test/*.test.js",
-    "mongoinit": "node src/mongodb-init.js"
+    "mongodb-init": "node src/mongodb-init.js",
+    "mongodb-export": "node src/mongodb-export.js"
   },
   "keywords": [
     "academic",
@@ -21,9 +22,11 @@
   "dependencies": {
     "body-parser": "^1.20.0",
     "chalk": "^4.1.2",
+    "crypto-js": "^4.1.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.5",
+    "express-session": "^1.17.3",
     "mongodb": "^4.6.0",
     "mongoose": "^6.3.3",
     "multer": "^1.4.4"
