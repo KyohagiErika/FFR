@@ -7,6 +7,7 @@ routes.get('/about', indexMiddleware.renderAbout)
 routes.get('/sign-in', auth.guestOnly, indexMiddleware.renderSignIn)
 routes.use('/student', auth.adminXhrOnly, require('./student'))
 routes.use('/account', auth.adminXhrOnly, require('./account'))
+routes.use('/fund', require('./fund'))
 routes.use(indexMiddleware.render404)
 routes.use(indexMiddleware.render500)
 
