@@ -30,11 +30,15 @@
                   <a class="font-semibold text-green text-4xl">F-Code</a>
                 </a>
               </div>
-              <form>
+              <form method="post">
+                  {{#if message}}
+                      <p class="text-danger">{{message}}</p>
+                  {{/if}}
                 <div class="mb-6">
                   <input
-                    type="email"
-                    placeholder="Email"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
                     class="
                       w-full
                       rounded-md
@@ -56,6 +60,7 @@
                   <input
                     type="password"
                     placeholder="Password"
+                    name="pass"
                     class="
                       w-full
                       rounded-md

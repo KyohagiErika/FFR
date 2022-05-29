@@ -1,9 +1,10 @@
+const auth = require('../midlewares/auth')
 const accountMiddleware = require('../midlewares/account')
 const routes = require('express').Router()
 
-routes.get('/', accountMiddleware.getAccount)
-routes.post('/', accountMiddleware.postAccount)
-routes.put('/', accountMiddleware.putAccount)
-routes.delete('/', accountMiddleware.deleteAccount)
+routes.get('/', auth.adminXhrOnly, accountMiddleware.getAccount)
+routes.post('/', auth.adminXhrOnly, accountMiddleware.postAccount)
+routes.put('/', auth.studentAndAdminXhrOnly, accountMiddleware.putAccount)
+routes.delete('/', auth.adminXhrOnly,accountMiddleware.deleteAccount)
 
 module.exports = routes
