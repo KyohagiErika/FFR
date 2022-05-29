@@ -6,7 +6,7 @@ const RSC = require('../lib/response-status-code')
  * @param {Request} req - HTTP Request Object
  * @param {Response} res - HTTP Response Object
  */
-const renderHome = (req, res) => {
+const renderHome = async (req, res) => {
     res.render('home')
 }
 
@@ -15,17 +15,18 @@ const renderHome = (req, res) => {
  * @param {Request} req - HTTP Request Object
  * @param {Response} res - HTTP Response Object
  */
-const renderAbout = (req, res) => {
+const renderAbout = async (req, res, next) => {
     res.render('about', { bannerName: 'About' })
 }
 
 /**
- * Render SignIn Page
+ * Logout
  * @param {Request} req - HTTP Request Object
  * @param {Response} res - HTTP Response Object
  */
-const renderSignIn = (req, res) => {
-    res.render('sign-in', { bannerName: 'Sign In' })
+const logout = async (req, res, next) => {
+    req.session.account = null
+    res.redirect('/')
 }
 
 /**
@@ -34,7 +35,7 @@ const renderSignIn = (req, res) => {
  * @param {Response} res - HTTP Response Object
  * @param {Function} next - next() function
  */
-const render404 = (req, res, next) => {
+const render404 = async (req, res, next) => {
     res.status(RSC.NOT_FOUND).send({ message: 'Not Found!' })
 }
 
@@ -45,7 +46,7 @@ const render404 = (req, res, next) => {
  * @param {Response} res - HTTP Response Object
  * @param {Function} next - next() function
  */
-const render500 = (err, req, res, next) => {
+const render500 = async (err, req, res, next) => {
     console.log(err)
     if (req.xhr) {
         res.status(RSC.SERVER_ERROR).send(err)
@@ -56,6 +57,6 @@ const render500 = (err, req, res, next) => {
 
 exports.renderHome = renderHome
 exports.renderAbout = renderAbout
-exports.renderSignIn = renderSignIn
+exports.logout = logout
 exports.render404 = render404
 exports.render500 = render500

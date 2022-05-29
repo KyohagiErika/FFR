@@ -13,20 +13,19 @@ const out = require('./lib/out')
 
 // Express Initialization
 const app = express()
-app.use(express.static('public'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(upload.array())
+app.engine('handlebars', expressHandlebars.engine())
+app.set('view engine', 'handlebars')
 app.set('trust proxy', 1)
 app.use(session({
     secret: 'keyboard cat',
     cookie: {
-        maxAge: 24*3600*1000,
-        secure: true
+        maxAge: config.SESSION_MAX_AGE
     }
 }))
-app.engine('handlebars', expressHandlebars.engine())
-app.set('view engine', 'handlebars')
+app.use(express.static('public'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(upload.array())
 app.use(require('./routes/index'))
 // End Express Initialization
 
