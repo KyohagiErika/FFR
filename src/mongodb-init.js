@@ -5,6 +5,7 @@ const { MongoClient } = require('mongodb')
 const mongoose = require('mongoose')
 const Student = require('./models/student')
 const Account = require('./models/account')
+const Fund = require('./models/fund')
 const out = require('./lib/out')
 
 setImmediate(async () => {
@@ -15,8 +16,10 @@ setImmediate(async () => {
     await mongoose.connect(config.MONGOOSE_URI)
     const studentData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.STUDENT)))
     const accountData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.ACCOUNT)))
+    const fundData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.FUND)))
     await Student.insertMany(studentData)
     await Account.insertMany(accountData)
+    await Fund.insertMany(accountData)
     await mongoose.disconnect()
     out.log(out.success('Database initialized successfully!'))
 })

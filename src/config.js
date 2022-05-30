@@ -7,5 +7,6 @@ exports.MONGOOSE_URI = process.env.MONGOOSE_URI || 'mongodb://localhost:27017/te
 exports.DATA_LOCATION = {
     STUDENT: 'student',
     ACCOUNT: 'account',
+    FUND: 'fund',
     location: (fileName) => __dirname+'/../data/'+fileName+'.json'
 }
