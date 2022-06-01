@@ -12,5 +12,6 @@ exports.ADMIN_DISPLAY_NAME = process.env.ADMIN_DISPLAY_NAME || 'Admin'
 exports.DATA_LOCATION = {
     STUDENT: 'student',
     ACCOUNT: 'account',
+    FUND: 'fund',
     location: (fileName) => __dirname+'/../data/'+fileName+'.json'
 }
