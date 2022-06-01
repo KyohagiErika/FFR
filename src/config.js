@@ -13,5 +13,6 @@ exports.DATA_LOCATION = {
     STUDENT: 'student',
     ACCOUNT: 'account',
     ATTENDANCE: 'attendance',
+    FUND: 'fund',
     location: (fileName) => __dirname+'/../data/'+fileName+'.json'
 }
