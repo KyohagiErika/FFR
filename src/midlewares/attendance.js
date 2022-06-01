@@ -2,8 +2,8 @@ const config = require('../config')
 const mongoose = require('mongoose')
 const Student = require('../models/student')
 const RSC = require('../lib/response-status-code')
-const Attendance = require('../models/attendance')
-
+const {Attendance} = require('../models/attendance')
+const {Student} = require('../models/student')
 /**
  * Get Attendance API
  * @param {Request} req - The HTTP Request Object
@@ -14,32 +14,50 @@ const getAttendance = async (req, res, next) => {
     let resStatus = RSC.OK
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
     let resObj = null
-    if(req.query.studentId) {
-        const attendance = await Attendance.find({studentId: req.query.studentId, day: req.query.day}, { _id: 0, __v: 0 }).populate('studentId', { _id: 0, __v: 0 }).catch(next)
+    if(req.session.account.studentId && req.query.attendanceId) {
+        const attendance = await Attendance.findById(req.query.attendanceId)
         if(attendance) {
-            resObj = attendance
+            const student = await Student.find({studentId: req.session.account.studentId, 'attendances._id': req.query.attendanceId}, { _id: 0, __v: 0 }).catch(next)
+            if(student) {
+                resObj = student
+            } else {
+                resStatus = RSC.BAD_REQUEST
+                resObj = { message: 'Attendance of you not found!' }
+            }
         } else {
             resStatus = RSC.BAD_REQUEST
-            resObj = { message: 'Attendance of student not found!' }
+                resObj = { message: 'Attendance not found!' }
         }
-
-    } else if(req.query.day) {
-        const attendance = await Attendance.find({day: req.query.day}, { _id: 0, __v: 0 }).populate('studentId', { _id: 0, __v: 0 }).catch(next)
-        if(attendance) {
-            resObj = attendance
+    } else if(req.session.account.studentId) {
+        const student = await Student.find({studentId: req.session.account.studentId}, { _id: 0, __v: 0 }).catch(next)
+        if(student) {
+            resObj = student
         } else {
             resStatus = RSC.BAD_REQUEST
-            resObj = { message: 'Attendance in this day not found!' }
+            resObj = { message: 'Student attendance not found!' }
         }
+    } else if(req.session.admin && req.query.attendanceId) {
+            const attendance = await Attendance.findById(req.query.attendanceId) 
+            if (attendance) {
+                const student = await Student.find({'attendance._id': req.query.attendanceId}, { _id: 0, __v: 0 }).catch(next)
+                if(student) {
+                    resObj = attendance
+                } else {
+                    resStatus = RSC.BAD_REQUEST
+                    resObj = { message: 'Student attendance not found!' }
+                }
+            } else {
+                resStatus = RSC.BAD_REQUEST
+                resObj = { message: 'Attendance not found!' }
+            }   
     } else {
-        resObj = await Attendance.find({}, { _id: 0, __v: 0 }).catch(next)
+        resStatus = RSC.BAD_REQUEST
+        resObj = { message: 'Attendance not found!' }
     }
     await mongoose.disconnect().catch(next)
     if(!res.headersSent) {
         res.status(resStatus).send(resObj)
     }
-
-
 }
 
 /**
@@ -52,29 +70,32 @@ const postAttendance = async (req, res, next) => {
     const attendance = req.body
     let resStatus = RSC.OK
     let resObj = []
-    if(attendance.studentId && attendance.day) {
+    if(attendance.title) {
         await mongoose.connect(config.MONGOOSE_URI).catch(next)
-        const student = await Student.findOne({ studentId: attendance.studentId }).catch(next)
-        if(student) {
-            if (await Attendance.findOne({ day: attendance.day, studentId: attendance.studentId }).catch(next)) {
+        const attendance = await Attendance.findOne({ title: attendance.title }).catch(next)
+        if(attendance) {
                 resStatus = RSC.BAD_REQUEST
                 resObj.push({
-                    at: 'day',
-                    message: 'Already attended in this day!'
+                    at: 'title',
+                    message: 'Attendance title already existed!'
                 })   
-            }  
-            if (resStatus === RSC.OK) {
-                const realAttendance = new Attendance(attendance)
-                await realAttendance.save().catch(next)
-                resObj = { message: 'Attendance is successful!' }
-            }
-            await mongoose.disconnect().catch(next)
         }
+        if (resStatus === RSC.OK) {
+            const realAttendance = new Attendance(attendance)
+            await realAttendance.save().catch(next)
+            await Student.updateMany({}, {
+                $addToSet: {
+                    attendances: realAttendance
+                }
+            })
+            resObj = { message: 'Add attendance successfully!' }
+        }
+        await mongoose.disconnect().catch(next)
     } else {
         resStatus = RSC.BAD_REQUEST
         resObj.push({
-            at: 'studentId',
-            message: 'Empty Attendance!'
+            at: 'title',
+            message: 'Empty attendance title!'
         })
     }
     if (!res.headersSent) {
@@ -93,24 +114,68 @@ const putAttendance = async (req, res, next) => {
     let resStatus = RSC.OK
     let resObj = []
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
-    const oldAttendance = await Attendance.findOne({ studentId: req.query.studentId, day: req.query.day }).catch(next)
-    if (oldAttendance) {
-        if  (attendanceInfo == oldAttendance) {
+    if(attendanceInfo.title && !attendanceInfo.status) {
+        const oldAttendance = await Attendance.findById(req.query.attendanceId).catch(next)
+        if (oldAttendance) {
+            const titleAttendance = await Attendance.findOne({title: attendanceInfo.title}).catch(next)
+            if  (titleAttendance || titleAttendance !== oldAttendance) {
+                resStatus = RSC.BAD_REQUEST
+                resObj.push({
+                    at: 'title',
+                    message: 'This attendance title already existed!'
+                })
+            }
+            if (resStatus === RSC.OK) {
+                await Attendance.updateOne({ _id: req.query.attendanceId}, { $set: {title: attendanceInfo.title} })
+                await Student.updateMany({'attendances._id': req.query.attendanceId}, {
+                    $set: {
+                        'attendances.$.title' : attendanceInfo.title
+                    }
+                })
+                resObj.push({ 
+                    message: 'Update attendance title successfully!' 
+                })
+            }
+        } else {
             resStatus = RSC.BAD_REQUEST
             resObj.push({
-                at: 'status',
-                message: 'This status already existed!'
+                at: '_id',
+                message: 'Attendance ID not found!'
             })
-        }
-        if (resStatus === RSC.OK) {
-            await Attendance.updateOne({ studentId: req.query.studentId, day: req.query.day }, { $set: attendanceInfo })
-        resObj = { message: 'Update attendance successfully!' }
         }
     } else {
         resStatus = RSC.BAD_REQUEST
         resObj.push({
-            at: 'studentId',
-            message: 'Attendance not found!'
+            at: 'title',
+            message: 'New attendance title not found!'
+        })
+    }
+
+     if(attendanceInfo.status.match(/^ATTENDED$|^ABSENT$/)) {
+        const oldStudent = await Student.findOne({studentId: req.query.studentId, 'attendances._id': req.query.attendanceId})
+        if(oldStudent.attendances.status == attendanceInfo.status) {
+            resStatus = RSC.BAD_REQUEST
+            resObj.push({
+                at: 'status',
+                message: 'Attendance status already existed!'
+            })
+        } else {
+            
+            if (resStatus === RSC.OK) {
+                await Student.updateMany({studentId: req.query.studentId, 'attendances._id': req.query.attendanceId}, {
+                    $set: {
+                        'attendances.$.status' : attendanceInfo.status
+                    }
+                }).catch(next)
+                resObj = { message: 'Update student successfully!' }
+            }
+        }
+
+    } else {
+        resStatus = RSC.BAD_REQUEST
+        resObj.push({
+            at: 'status',
+            message: 'Attendance status not found!'
         })
     }
     await mongoose.disconnect().catch(next)
@@ -127,11 +192,15 @@ const deleteAttendance = async (req, res, next) => {
     let resStatus = RSC.OK
     let resObj = null
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
-    if (await Attendance.findOneAndDelete({ studentId: req.query.studentId, day: req.query.day }).catch(next)) {
-        resObj = { message: 'Delete attendance successfully!' }
+    if (await Attendance.findOneAndDelete({ title: req.query.attendanceId}).catch(next)) {
+        if(await Student.deleteMany({'attendances.title': req.query.attendanceId})) {
+            resObj = { message: 'Delete attendance successfully!' }
+        } else {
+            resObj = { message: 'Student list of attendance title not found!' }
+        }      
     } else {
         resStatus = RSC.BAD_REQUEST
-        resObj = { message: 'Attendance not found!' }
+        resObj = { message: 'Attendance title not found!' }
     }
     await mongoose.disconnect().catch(next)
     if (!res.headersSent) {
