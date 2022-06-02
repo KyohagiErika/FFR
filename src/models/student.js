@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const AttendanceSchema = require('./attendance').AttendanceSchema
-const {FundSchema}= require('./fund')
+const { AttendanceSchema } = require('./attendance')
+const { FundSchema }= require('./fund')
 
 const StudentSchema = new Schema({
     studentId: { type: String, match: /^S[A-Z]\d{6}$/, required: true, unique: true },

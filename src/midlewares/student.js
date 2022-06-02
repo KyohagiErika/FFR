@@ -1,6 +1,6 @@
 const config = require('../config')
 const mongoose = require('mongoose')
-const Student = require('../models/student')
+const { Student } = require('../models/student')
 const RSC = require('../lib/response-status-code')
 
 /**

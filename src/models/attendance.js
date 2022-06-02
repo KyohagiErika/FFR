@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const AttendanceSchema = new Schema({
     title: {type: String, require: true, unique: true},
     date: {type: Date},
-    status: {type: String, enum: ['ABSENT', 'NOT YET', 'ATTENDED'], require: true, default: 'NOT YET'} 
+    status: {type: String, enum: ['ABSENT', 'NOT YET', 'ATTENDED'], default: 'NOT YET'} 
 })
 
 exports.AttendanceSchema = AttendanceSchema
