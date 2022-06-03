@@ -90,7 +90,7 @@ const putAttendance = async (req, res, next) => {
         const oldAttendance = await Attendance.findById(req.query.attendanceId).catch(next)
         if (oldAttendance) {
             const titleAttendance = await Attendance.findOne({title: attendanceInfo.title}).catch(next)
-            if  (titleAttendance || titleAttendance !== oldAttendance) {
+            if  (titleAttendance){// || titleAttendance !== oldAttendance) {
                 resStatus = RSC.BAD_REQUEST
                 resObj.push({
                     at: 'title',
@@ -164,15 +164,18 @@ const deleteAttendance = async (req, res, next) => {
     let resStatus = RSC.OK
     let resObj = null
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
-    if (await Attendance.findOneAndDelete({ title: req.query.attendanceId}).catch(next)) {
-        if(await Student.deleteMany({'attendances._id': req.query.attendanceId})) {
-            resObj = { message: 'Delete attendance successfully!' }
-        } else {
-            resObj = { message: 'Student list of attendance title not found!' }
-        }      
+    if (await Attendance.findOneAndDelete({ _id: req.query.attendanceId}).catch(next)) {
+        resObj = { message: 'Delete attendance successfully!' }
+        // if(await Student.updateMany({'attendances._id': req.query.attendanceId}, {
+        //     $unset: {'attendances._id':""}
+        // })) {
+        //     resObj = { message: 'Delete attendance successfully!' }
+        // } else {
+        //     resObj = { message: 'Student list of attendance title not found!' }
+        // }      
     } else {
         resStatus = RSC.BAD_REQUEST
-        resObj = { message: 'Attendance title not found!' }
+        resObj = { message: 'Attendance ID not found!' }
     }
     await mongoose.disconnect().catch(next)
     if (!res.headersSent) {
