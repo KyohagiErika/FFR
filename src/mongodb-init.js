@@ -1,13 +1,13 @@
-const config = require('./config')
-const DATA_LOCATION = config.DATA_LOCATION
-const fs = require('fs/promises')
+const {config} = require('./config')
+const {DATA_LOCATION} = config.DATA_LOCATION
+const {fs} = require('fs/promises')
 const { MongoClient } = require('mongodb')
-const mongoose = require('mongoose')
-const Student = require('./models/student')
-const Account = require('./models/account')
-const Fund = require('./models/fund')
-const Admin = require('./models/admin')
-const out = require('./lib/out')
+const {mongoose} = require('mongoose')
+const {Student} = require('./models/student')
+const {Account} = require('./models/account')
+const {Fund} = require('./models/fund')
+const {Admin} = require('./models/admin')
+const {out} = require('./lib/out')
 
 setImmediate(async () => {
     const client = new MongoClient(config.MONGO_URI)
@@ -26,7 +26,7 @@ setImmediate(async () => {
     const fundData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.FUND)))
     await Student.insertMany(studentData)
     await Account.insertMany(accountData)
-    await Fund.insertMany(accountData)
+    await Fund.insertMany(fundData)
     await mongoose.disconnect()
     out.log(out.success('Database initialized successfully!'))
 })

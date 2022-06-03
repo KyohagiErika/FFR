@@ -1,11 +1,11 @@
-const config = require('./config')
-const DATA_LOCATION = config.DATA_LOCATION
-const fs = require('fs/promises')
-const mongoose = require('mongoose')
-const Student = require('./models/student')
-const Account = require('./models/account')
-const Fund = require('./models/fund')
-const out = require('./lib/out')
+const {config} = require('./config')
+const {DATA_LOCATION} = config.DATA_LOCATION
+const {fs} = require('fs/promises')
+const {mongoose} = require('mongoose')
+const {Student} = require('./models/student')
+const {Account} = require('./models/account')
+const {Fund} = require('./models/fund')
+const {out} = require('./lib/out')
 
 setImmediate(async () => {
     await mongoose.connect(config.MONGOOSE_URI)

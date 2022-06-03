@@ -1,6 +1,7 @@
 const config = require('../config')
 const mongoose = require('mongoose')
 const Fund = require('../models/fund').Fund
+const Student = require('../models/student').Student
 const RSC = require('../lib/response-status-code')
 /**
  * Get Fund API
@@ -71,6 +72,7 @@ const postFund = async (req, res, next) => {
     if (resStatus === RSC.OK) {
         const realFund = new Fund(fund)
         await realFund.save().catch(next)
+        await Student.updateMany({ studentId: req.query.studentId }, { $addToSet: realFund }).catch(next)
         resObj = { message: 'Create fund successfully!' }
     }
     await mongoose.disconnect().catch(next)
@@ -118,6 +120,7 @@ const putFund = async (req, res, next) => {
         }
         if (resStatus === RSC.OK) {
             await Fund.updateOne({ period: req.query.period }, { $set: fundInfo }).catch(next)
+            await Student.updateMany({ studentId: req.query.studentId }, { $set: fundInfo }).catch(next)
             resObj = { message: 'Update fund successfully!' }
         }
     } else {
@@ -132,7 +135,7 @@ const putFund = async (req, res, next) => {
 }
 
 /**
- * Delete Student API
+ * Delete Fund API
  * @param {Request} req - The HTTP Request Object
  * @param {Response} res - The HTTP Response Object
  * @param {Function} next - The next() function

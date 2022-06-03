@@ -7,8 +7,7 @@ const FundSchema = new Schema({
     period: {type: String, required: true},
     title: {type: String, required: true},
     amount: {type: Number, required: true},
-    status: {type: String,match: /^NOT_PAID$|^PAID$|^PAID_LATE$/, default:"NOT_PAID" }
-
+    status: {type: String,enum: ['NOT PAID','PAID','PAID LATE'], default:'NOT_PAID' }
 })
 exports.FundSchema = FundSchema
 exports.Fund = mongoose.model('Fund', FundSchema)
