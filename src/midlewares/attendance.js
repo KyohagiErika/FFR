@@ -1,9 +1,8 @@
 const config = require('../config')
 const mongoose = require('mongoose')
-const Student = require('../models/student')
+const { Student } = require('../models/student')
+const { Attendance } = require('../models/attendance')
 const RSC = require('../lib/response-status-code')
-const {Attendance} = require('../models/attendance')
-const {Student} = require('../models/student')
 /**
  * Get Attendance API
  * @param {Request} req - The HTTP Request Object
@@ -15,12 +14,12 @@ const getAttendance = async (req, res, next) => {
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
     let resObj = null
     if (req.query.attendanceId) {
-        resObj = await Attendance.findOne({ title: req.query.title }, { _id: 0, __v: 0 }).catch(next)
+        resObj = await Attendance.findOne({ _id: req.query.attendanceId }, { _id: 0, __v: 0 }).catch(next)
         if (!resObj) {
             resStatus = RSC.BAD_REQUEST
             resObj = {
-                at: 'title',
-                message: 'Attendance title not found!'
+                at: '_id',
+                message: 'Attendance not found!'
             }
         }
     } else {
@@ -86,7 +85,7 @@ const putAttendance = async (req, res, next) => {
     let resStatus = RSC.OK
     let resObj = []
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
-    if(attendanceInfo.title && !attendanceInfo.status) {
+    if(attendanceInfo.title) {
         const oldAttendance = await Attendance.findById(req.query.attendanceId).catch(next)
         if (oldAttendance) {
             const titleAttendance = await Attendance.findOne({title: attendanceInfo.title}).catch(next)
@@ -123,33 +122,33 @@ const putAttendance = async (req, res, next) => {
         })
     }
 
-     if(attendanceInfo.status.match(/^ATTENDED$|^ABSENT$/)) {
-        const oldStudent = await Student.findOne({studentId: req.query.studentId, 'attendances._id': req.query.attendanceId})
-        if(oldStudent.attendances.status == attendanceInfo.status) {
-            resStatus = RSC.BAD_REQUEST
-            resObj.push({
-                at: 'status',
-                message: 'Attendance status already existed!'
-            })
-        } else {
+    //  if(attendanceInfo.status.match(/^ATTENDED$|^ABSENT$/)) {
+    //     const oldStudent = await Student.findOne({studentId: req.query.studentId, 'attendances._id': req.query.attendanceId})
+    //     if(oldStudent.attendances.status == attendanceInfo.status) {
+    //         resStatus = RSC.BAD_REQUEST
+    //         resObj.push({
+    //             at: 'status',
+    //             message: 'Attendance status already existed!'
+    //         })
+    //     } else {
             
-            if (resStatus === RSC.OK) {
-                await Student.updateMany({studentId: req.query.studentId, 'attendances._id': req.query.attendanceId}, {
-                    $set: {
-                        'attendances.$.status' : attendanceInfo.status
-                    }
-                }).catch(next)
-                resObj = { message: 'Update student successfully!' }
-            }
-        }
+    //         if (resStatus === RSC.OK) {
+    //             await Student.updateMany({studentId: req.query.studentId, 'attendances._id': req.query.attendanceId}, {
+    //                 $set: {
+    //                     'attendances.$.status' : attendanceInfo.status
+    //                 }
+    //             }).catch(next)
+    //             resObj = { message: 'Update student successfully!' }
+    //         }
+    //     }
 
-    } else {
-        resStatus = RSC.BAD_REQUEST
-        resObj.push({
-            at: 'status',
-            message: 'Attendance status not found!'
-        })
-    }
+    // } else {
+    //     resStatus = RSC.BAD_REQUEST
+    //     resObj.push({
+    //         at: 'status',
+    //         message: 'Attendance status not found!'
+    //     })
+    // }
     await mongoose.disconnect().catch(next)
     res.status(resStatus).send(resObj)
 }
@@ -165,7 +164,7 @@ const deleteAttendance = async (req, res, next) => {
     let resObj = null
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
     if (await Attendance.findOneAndDelete({ title: req.query.attendanceId}).catch(next)) {
-        if(await Student.deleteMany({'attendances.title': req.query.attendanceId})) {
+        if(await Student.deleteMany({'attendances._id': req.query.attendanceId})) {
             resObj = { message: 'Delete attendance successfully!' }
         } else {
             resObj = { message: 'Student list of attendance title not found!' }

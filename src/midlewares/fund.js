@@ -1,6 +1,6 @@
 const config = require('../config')
 const mongoose = require('mongoose')
-const Fund = require('../models/fund').Fund
+const { Fund } = require('../models/fund')
 const RSC = require('../lib/response-status-code')
 /**
  * Get Fund API
