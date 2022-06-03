@@ -54,6 +54,7 @@ const postAttendance = async (req, res, next) => {
         if (resStatus === RSC.OK) {
             const realAttendance = new Attendance(attendanceInfo)
             await realAttendance.save().catch(next)
+            realAttendance.status = 'NOT YET'
             await Student.updateMany({}, {
                 $addToSet: {
                     attendances: realAttendance
@@ -100,7 +101,7 @@ const putAttendance = async (req, res, next) => {
                 await Attendance.updateOne({ _id: req.query.attendanceId}, { $set: {title: attendanceInfo.title} })
                 await Student.updateMany({'attendances._id': req.query.attendanceId}, {
                     $set: {
-                        'attendances.$.title' : attendanceInfo.title
+                        'attendances.$.title' : attendanceInfo.title,
                     }
                 })
                 resObj.push({ 

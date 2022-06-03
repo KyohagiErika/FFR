@@ -2,10 +2,10 @@ const config = require('./config')
 const DATA_LOCATION = config.DATA_LOCATION
 const fs = require('fs/promises')
 const mongoose = require('mongoose')
-const Student = require('./models/student')
-const Account = require('./models/account')
-const Attendance = require('./models/attendance')
-const Fund = require('./models/fund')
+const {Student} = require('./models/student')
+const {Account} = require('./models/account')
+const {Attendance} = require('./models/attendance')
+const {Fund} = require('./models/fund')
 const out = require('./lib/out')
 
 setImmediate(async () => {
