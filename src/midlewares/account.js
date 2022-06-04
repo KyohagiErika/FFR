@@ -1,7 +1,7 @@
 const config = require('../config')
 const mongoose = require('mongoose')
-const Account = require('../models/account')
-const Student = require('../models/student')
+const { Account } = require('../models/account')
+const { Student } = require('../models/student')
 const RSC = require('../lib/response-status-code')
 
 /**
@@ -13,6 +13,7 @@ const RSC = require('../lib/response-status-code')
 const getAccount = async (req, res, next) => {
     let resStatus = RSC.OK
     let resObj = null
+    await mongoose.connect(config.MONGOOSE_URI).catch(next)
     if (req.query.username) {
         const account = await Account.findOne({ username: req.query.username }, { _id: 0, __v: 0 }).populate('info', { _id: 0, __v: 0 }).catch(next)
         if (account) {
@@ -24,6 +25,7 @@ const getAccount = async (req, res, next) => {
     } else {
         resObj = await Account.find({}, { _id: 0, __v: 0 })
     }
+    await mongoose.disconnect().catch(next)
     if (!res.headersSent) {
         res.status(resStatus).send(resObj)
     }

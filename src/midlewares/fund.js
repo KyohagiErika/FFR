@@ -1,6 +1,6 @@
 const config = require('../config')
 const mongoose = require('mongoose')
-const Fund = require('../models/fund').Fund
+const { Fund } = require('../models/fund')
 const RSC = require('../lib/response-status-code')
 /**
  * Get Fund API
@@ -93,7 +93,7 @@ const putFund = async (req, res, next) => {
     const oldFund = await Fund.findOne({ period: req.query.period }).catch(next)
     if (oldFund) {
         const periodFund = await Fund.findOne({ period: fundInfo.period }).catch(next)
-        if (fundInfo.period && (periodFund || periodFund !== oldFund)) {
+        if (fundInfo.period && periodFund && periodFund !== oldFund) {
             resStatus = RSC.BAD_REQUEST
             resObj.push({
                 at: 'period',
@@ -101,7 +101,7 @@ const putFund = async (req, res, next) => {
             })
         }
         const titleFund = await Fund.findOne({ title: fundInfo.title }).catch(next)
-        if (fundInfo.title && (titleFund || titleFund !== oldFund)) {
+        if (fundInfo.title && titleFund && titleFund !== oldFund) {
             resStatus = RSC.BAD_REQUEST
             resObj.push({
                 at: 'title',
@@ -109,7 +109,7 @@ const putFund = async (req, res, next) => {
             })
         }
         const amountFund = await Fund.findOne({ amount: fundInfo.amount }).catch(next)
-        if (fundInfo.amount && (amountFund || amountFund !== oldFund)) {
+        if (fundInfo.amount && amountFund && amountFund !== oldFund) {
             resStatus = RSC.BAD_REQUEST
             resObj.push({
                 at: 'amount',
