@@ -9,4 +9,5 @@ const AccountSchema = new Schema({
     regDay: { type: Date, required: true }
 })
 
-module.exports = mongoose.model('Account', AccountSchema)
+exports.AccountSchema = AccountSchema
+exports.Account = mongoose.model('Account', AccountSchema)
