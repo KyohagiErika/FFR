@@ -55,11 +55,13 @@ const postAttendance = async (req, res, next) => {
             const realAttendance = new Attendance(attendanceInfo)
             await realAttendance.save().catch(next)
             realAttendance.status = 'NOT YET'
-            await Student.updateMany({}, {
-                $addToSet: {
-                    attendances: realAttendance
-                }
-            })
+            const studentList = await Student.find();
+            studentList.forEach(async student => {
+                student.attendances.push(realAttendance)
+                await student.save()
+                })
+            
+            
             resObj = { message: 'Add attendance successfully!' }
         }
         await mongoose.disconnect().catch(next)
@@ -164,11 +166,12 @@ const deleteAttendance = async (req, res, next) => {
     let resStatus = RSC.OK
     let resObj = null
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
-    if (await Attendance.findOneAndU({ _id: req.query.attendanceId}).catch(next)) {
+    const attendance = await Attendance.findOneAndDelete({ _id: req.query.attendanceId}).catch(next)
+    if (attendance) {
         resObj = { message: 'Delete attendance successfully!' }
         if(await Student.updateMany({'attendances._id': req.query.attendanceId}, {
-            $pull: {'attendances._id': {
-                _id: req.query.attendanceId
+            $pull: { attendances: {
+                title: attendance.title
             }}
         })) {
             resObj = { message: 'Delete attendance successfully!' }

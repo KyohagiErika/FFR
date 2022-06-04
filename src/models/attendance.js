@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const AttendanceSchema = new Schema({
-    title: {type: String, require:true, unique: true},
+    _id: {type: Schema.Types.ObjectId, default: new Schema.Types.ObjectId()},
+    title: {type: String},
     date: {type: Date},
     status: {type: String, enum: ['ABSENT', 'NOT YET', 'ATTENDED']}
 })
