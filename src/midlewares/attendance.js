@@ -55,12 +55,11 @@ const postAttendance = async (req, res, next) => {
             const realAttendance = new Attendance(attendanceInfo)
             await realAttendance.save().catch(next)
             realAttendance.status = 'NOT YET'
-            const studentList = await Student.find();
-            studentList.forEach(async student => {
-                student.attendances.push(realAttendance)
-                await student.save()
-                })
-            
+            await Student.updateMany({}, {
+                $addToSet: {
+                    attendances: realAttendance
+                }
+            })
             
             resObj = { message: 'Add attendance successfully!' }
         }
