@@ -88,7 +88,7 @@ const putStudent = async (req, res, next) => {
     const oldStudent = await Student.findOne({ studentId: req.query.studentId }).catch(next)
     if (oldStudent) {
         const emailStudent = await Student.findOne({ email: studentInfo.email }).catch(next)
-        if (studentInfo.email && (emailStudent || emailStudent !== oldStudent)) {
+        if (studentInfo.email && emailStudent && emailStudent !== oldStudent) {
             resStatus = RSC.BAD_REQUEST
             resObj.push({
                 at: 'email',
@@ -96,7 +96,7 @@ const putStudent = async (req, res, next) => {
             })
         }
         const phoneStudent = await Student.findOne({ phone: studentInfo.phone }).catch(next)
-        if (studentInfo.phone && (phoneStudent || phoneStudent !== oldStudent)) {
+        if (studentInfo.phone && phoneStudent && phoneStudent !== oldStudent) {
             resStatus = RSC.BAD_REQUEST
             resObj.push({
                 at: 'phone',
