@@ -2,8 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const AttendanceSchema = new Schema({
-    _id: {type: Schema.Types.ObjectId, default: new Schema.Types.ObjectId()},
-    title: {type: String},
+    title: {type: String, required: true, unique: true},
     date: {type: Date},
     status: {type: String, enum: ['ABSENT', 'NOT YET', 'ATTENDED']}
 })
