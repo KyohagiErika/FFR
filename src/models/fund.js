@@ -4,10 +4,10 @@ const ObjectId = Schema.ObjectId
 
 const FundSchema = new Schema({
     date: {type: Date},
-    period: {type: String, required: true},
+    period: {type: String},
     title: {type: String, required: true},
-    amount: {type: Number, required: true},
-    status: {type: String, enum: ['PAID', 'NOT YET', 'PAID LATE'], default:"NOT YET" }
+    amount: {type: Number},
+    status: {type: String, enum: ['PAID', 'NOT YET', 'PAID LATE'] }
 
 })
 exports.FundSchema = FundSchema

@@ -15,7 +15,7 @@ const getFund = async (req, res, next) => {
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
     let resObj = null
     if (req.query.fundId) {
-        resObj = await Fund.findOne({ _id: req.query.fundId }, { _id: 0, __v: 0 }).catch(next)
+        resObj = await Fund.findOne({ _id: req.query.fundId }, {  __v: 0 }).catch(next)
         if (!resObj) {
             resStatus = RSC.BAD_REQUEST
             resObj = {
@@ -24,7 +24,7 @@ const getFund = async (req, res, next) => {
             }
         }
     } else {
-        resObj = await Fund.find({}, { _id: 0, __v: 0 }).catch(next)
+        resObj = await Fund.find({}, { __v: 0 }).catch(next)
     }
     await mongoose.disconnect().catch(next)
     if (!res.headersSent) {
@@ -54,7 +54,7 @@ const postFund = async (req, res, next) => {
         }
 
     if (resStatus === RSC.OK) {
-        const realFund = new Fund(fund)
+        const realFund = new Fund(fundInfo)
         await realFund.save().catch(next)
         realFund.status = 'NOT YET'
         await Student.updateMany({}, {
