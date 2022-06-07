@@ -1,6 +1,6 @@
 const config = require('../config')
 const mongoose = require('mongoose')
-const Account = require('../models/account')
+const { Account } = require('../models/account')
 const RSC = require('../lib/response-status-code')
 
 /**
@@ -28,7 +28,7 @@ const signIn = async (req, res, next) => {
         req.session.account = account
         res.redirect('/')
     } else if (!res.headersSent) {
-        res.status(RSC.BAD_REQUEST).render('sign-in', { message: 'Wrong username or password!' })
+        res.status(RSC.BAD_REQUEST).render('sign-in', { bannerName: 'Sign In', message: 'Wrong username or password!' })
     }
 }
 

@@ -8,4 +8,5 @@ const AdminSchema = new Schema({
     displayName: { type: String, default: 'Admin' }
 })
 
-module.exports = mongoose.model('Admin', AdminSchema)
+exports.AdminSchemaSchema = AdminSchema
+exports.Admin = mongoose.model('Admin', AdminSchema)
