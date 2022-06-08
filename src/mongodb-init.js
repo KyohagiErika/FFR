@@ -1,7 +1,8 @@
-const config = require('./config')
-const DATA_LOCATION = config.DATA_LOCATION
-const fs = require('fs/promises')
+const {config} = require('./config')
+const {DATA_LOCATION} = config.DATA_LOCATION
+const {fs} = require('fs/promises')
 const { MongoClient } = require('mongodb')
+
 const mongoose = require('mongoose')
 const {Student} = require('./models/student')
 const {Account} = require('./models/account')
@@ -9,6 +10,7 @@ const {Attendance} = require('./models/attendance')
 const {Fund} = require('./models/fund')
 const {Admin} = require('./models/admin')
 const out = require('./lib/out')
+
 
 setImmediate(async () => {
     const client = new MongoClient(config.MONGO_URI)

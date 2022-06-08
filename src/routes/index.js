@@ -12,6 +12,7 @@ routes.use('/account', require('./account'))
 routes.use('/attendance', require('./attendance'))
 routes.use('/fund', require('./fund'))
 routes.use('/admin', require('./admin'))
+routes.use('/user-attendance', require('./user-attendance'))
 routes.use(indexMiddleware.render404)
 routes.use(indexMiddleware.render500)
 
