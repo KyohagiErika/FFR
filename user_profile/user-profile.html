@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="user-profile.css">
+</head>
+<body>
+<!-- Components: 
+1.Navbar
+2.Banner
+3.Forms
+4.Footer
+or Navbar & Forms
+-->
+<!-- Navbar start -->
+
+<!-- Navbar end -->
+<!-- Forms start -->
+    <div class="container">
+        <div class="title">Update Profile</div>
+        <form action="#">
+<!-- user profile details start -->
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Full Name</span>
+                    <input type="text" placeholder="Enter your full name" required class="" >
+                </div>
+                <div class="input-box">
+                    <span class="details">ID</span>
+                    <input type="text" placeholder="Enter your student ID" required class="" >
+                </div>
+                <div class="input-box">
+                    <span class="details">Major</span>
+                    <input type="text" placeholder="Enter your major" required class="" >
+                </div>
+                <div class="input-box">
+                    <span class="details">Birthday</span>
+                    <input type="text" placeholder="Enter your birthday" required class="" >
+                </div>
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="email" placeholder="Enter your email" required class="" >
+                </div>
+                <div class="input-box">
+                    <span class="details">Phone Number</span>
+                    <input type="tel" placeholder="Enter your phone number" required class="" >
+                </div>
+            </div>
+            <div class="gender">
+                <input type="radio" name="gender" id="dot-1">
+                <input type="radio" name="gender" id="dot-2">
+                <span class="gender-title">Gender</span>
+                <div class="category">
+                    <label for="dot-1">
+                        <span class="dot one"></span>
+                        <span class="gender">Male</span>
+                    </label>
+                    <label for="dot-2">
+                        <span class="dot two"></span>
+                        <span class="gender">Female</span>
+                    </label>
+                </div>
+            </div>
+<!-- user profile details -->
+            <div id="save" class="button">
+                <input type="submit" class="" value="Save">
+            </div>
+            <div class="cancel">
+                <input type="submit" class="" value="Cancel">
+            </div>
+        </form>
+    </div>
+    <!-- Saved Successfully Modal Start -->
+    <div class="bg-modal">
+        <div class="modal-content">
+            <div class="close">+</div>
+            <img class="saved-tick" src="./media/checked.png" alt="Saved">
+            <p class="saved">Saved successfully</p>
+        </div>
+    </div>
+    <!-- Saved Successfully Modal End -->
+<!-- Forms end -->
+</body>
+<script src="./user-profile.js"></script>
+</html>
