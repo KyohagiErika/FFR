@@ -1,7 +1,22 @@
 const auth = require('../midlewares/auth')
 const indexMiddleware = require('../midlewares/index')
+const upload = require('../midlewares/upload')
+const fs = require('fs/promises')
 const routes = require('express').Router()
 
+routes.get('/test', (req, res, next) => {
+    res.render('test', { layout: 'test' })
+})
+routes.post('/test', upload.uploadImage.single('img'), async (req, res, next) => {
+    const file = req.file
+    if (file.mimetype.split('/')[0] !== 'image') {
+        await fs.unlink(file.path)
+        res.render('test', { layout: 'test', message: 'Your uploaded file is not an image!' })
+    } else {
+        const realPath = file.path.replace('public', '')
+        res.render('test', { layout: 'test', imgPath: realPath })
+    }
+})
 routes.get('/', indexMiddleware.renderHome)
 routes.get('/about', indexMiddleware.renderAbout)
 routes.get('/logout', auth.studentOnly, indexMiddleware.logout)

@@ -1,5 +1,12 @@
-<div id="displayer"></div>
-<form id="mainForm" enctype="application/x-www-form-urlencoded">
-    <input type="text" name="studentId">
-    <button type="button" id="mainFormSubmit">Find</button>
-</form>
+<h1>Test</h1>
+{{#if imgPath}}
+    <img src="{{imgPath}}" alt="return image">
+{{else}}
+    {{#if message}}
+        <p>{{message}}</p>
+    {{/if}}
+    <form action="/test" method="post" enctype="multipart/form-data">
+        <input type="file" accept="image/*" name="img">
+        <input type="submit">
+    </form>
+{{/if}}
