@@ -49,3 +49,59 @@ addEventListener('scroll', function() {
     });
   });
 })();
+
+
+// Sign in 
+let listAccount = [];
+
+class Account {
+  constructor(username, password, fullname, role) {
+    this.username = username;
+    this.password = password;
+    this.fullname = fullname;
+    this.role = role;
+  }
+}
+
+let adminAccount = new Account(
+  "minh@gmail.com",
+  "minh123",
+  "minh",
+  "admin"
+);
+listAccount.push(adminAccount);
+
+//event
+let buttonTag = document.getElementById("signin-button");
+
+buttonTag.addEventListener("click", (e) => {
+  e.preventDefault();
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+
+  let account = listAccount.filter(function (account) {
+    return account.username == username && account.password == password;
+  });
+
+  
+  if (account.length == 0) {
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    Swal.fire({
+      icon: "error",
+      title: "Thông báo",
+      text: "Tài khoản không tồn tại!",
+    });
+  } else {
+    let accountJson = JSON.stringify(account[0]);
+    Swal.fire({
+      icon: "success",
+      title: "Thông báo",
+      text: "đăng nhập thành công"
+    });
+    // setTimeout( window.location.href = "./admin.html",5000)
+    sessionStorage.setItem("ACCOUNT", accountJson);
+   
+   
+  }
+});
