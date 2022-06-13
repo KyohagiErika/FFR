@@ -9,12 +9,28 @@ routes.get('/test', (req, res, next) => {
 })
 routes.post('/test', upload.uploadImage.single('img'), async (req, res, next) => {
     const file = req.file
-    if (file.mimetype.split('/')[0] !== 'image') {
-        await fs.unlink(file.path)
-        res.render('test', { layout: 'test', message: 'Your uploaded file is not an image!' })
+    if (file) {
+        if (file.mimetype.split('/')[0] !== 'image') {
+            await fs.unlink(file.path)
+            if (req.xhr) {
+                res.status(400).send('Your uploaded file is not an image!')
+            } else {
+                res.render('test', { layout: 'test', message: 'Your uploaded file is not an image!' })
+            }
+        } else {
+            const realPath = file.path.replace('public', '')
+            if (req.xhr) {
+                res.send(realPath)
+            } else {
+                res.render('test', { layout: 'test', imgPath: realPath })
+            }
+        }
     } else {
-        const realPath = file.path.replace('public', '')
-        res.render('test', { layout: 'test', imgPath: realPath })
+        if (req.xhr) {
+            res.status(400).send('Empty sent data!')
+        } else {
+            res.render('test', { layout: 'test', message: 'Empty sent data!' })
+        }
     }
 })
 routes.get('/', indexMiddleware.renderHome)

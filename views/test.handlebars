@@ -1,12 +1,14 @@
 <h1>Test</h1>
+<div id="xhr-img-displayer"></div>
 {{#if imgPath}}
     <img src="{{imgPath}}" alt="return image">
 {{else}}
     {{#if message}}
         <p>{{message}}</p>
     {{/if}}
-    <form action="/test" method="post" enctype="multipart/form-data">
+    <form action="/test" method="post" enctype="multipart/form-data" id="img-form">
         <input type="file" accept="image/*" name="img">
         <input type="submit">
+        <input type="button" value="Submit XHR" id="img-submit-btn">
     </form>
 {{/if}}
