@@ -3,11 +3,7 @@ const config = require('./config')
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
-const multer = require('multer')
 const session = require('express-session')
-const upload = multer({
-    dest: 'uploads/'
-})
 const out = require('./lib/out')
 // End Import Section
 
@@ -25,7 +21,6 @@ app.use(session({
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(upload.array())
 app.use(require('./routes/index'))
 // End Express Initialization
 

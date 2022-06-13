@@ -9,6 +9,7 @@ exports.COOKIE_MAX_AGE = Number(process.env.COOKIE_MAX_AGE) || 2592000000
 exports.ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'root'
 exports.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || ''
 exports.ADMIN_DISPLAY_NAME = process.env.ADMIN_DISPLAY_NAME || 'Admin'
+exports.IMAGE_PATH = process.env.IMAGE_PATH || 'public/uploads/'
 exports.DATA_LOCATION = {
     STUDENT: 'student',
     ACCOUNT: 'account',
