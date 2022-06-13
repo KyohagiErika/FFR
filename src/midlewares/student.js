@@ -49,27 +49,27 @@ const postStudent = async (req, res, next) => {
             message: 'Student already existed!'
         })
     }
-    if (await Student.findOne({ firstName: student.firstName }).catch(next)) {
-        resStatus = RSC.BAD_REQUEST
-        resObj.push({
-            at: 'firstName',
-            message: 'First Name already existed!'
-        })
-    }
-    if (await Student.findOne({ lastName: student.lastName }).catch(next)) {
-        resStatus = RSC.BAD_REQUEST
-        resObj.push({
-            at: 'lastName',
-            message: 'Last Name already existed!'
-        })
-    }
-    if (await Student.findOne({ major: student.major }).catch(next)) {
-        resStatus = RSC.BAD_REQUEST
-        resObj.push({
-            at: 'major',
-            message: 'Major already existed!'
-        })
-    }
+    // if (await Student.findOne({ firstName: student.firstName }).catch(next)) {
+    //     resStatus = RSC.BAD_REQUEST
+    //     resObj.push({
+    //         at: 'firstName',
+    //         message: 'First Name already existed!'
+    //     })
+    // }
+    // if (await Student.findOne({ lastName: student.lastName }).catch(next)) {
+    //     resStatus = RSC.BAD_REQUEST
+    //     resObj.push({
+    //         at: 'lastName',
+    //         message: 'Last Name already existed!'
+    //     })
+    // }
+    // if (await Student.findOne({ major: student.major }).catch(next)) {
+    //     resStatus = RSC.BAD_REQUEST
+    //     resObj.push({
+    //         at: 'major',
+    //         message: 'Major already existed!'
+    //     })
+    // }
     if (await Student.findOne({ email: student.email }).catch(next)) {
         resStatus = RSC.BAD_REQUEST
         resObj.push({
@@ -84,20 +84,20 @@ const postStudent = async (req, res, next) => {
             message: 'Phone number already existed!'
         })
     }
-    if (await Student.findOne({ gender: student.gender }).catch(next)) {
-        resStatus = RSC.BAD_REQUEST
-        resObj.push({
-            at: 'gender',
-            message: 'Gender number already existed!'
-        })
-    }
-    if (await Student.findOne({ birthday: student.birthday }).catch(next)) {
-        resStatus = RSC.BAD_REQUEST
-        resObj.push({
-            at: 'birthday',
-            message: 'Birthday number already existed!'
-        })
-    }
+    // if (await Student.findOne({ gender: student.gender }).catch(next)) {
+    //     resStatus = RSC.BAD_REQUEST
+    //     resObj.push({
+    //         at: 'gender',
+    //         message: 'Gender already existed!'
+    //     })
+    // }
+    // if (await Student.findOne({ birthday: student.birthday }).catch(next)) {
+    //     resStatus = RSC.BAD_REQUEST
+    //     resObj.push({
+    //         at: 'birthday',
+    //         message: 'Birthday already existed!'
+    //     })
+    // }
     if (resStatus === RSC.OK) {
         const realStudent = new Student(student)
         await realStudent.save().catch(next)
@@ -143,7 +143,7 @@ const putStudent = async (req, res, next) => {
             resStatus = RSC.BAD_REQUEST
             resObj.push({
                 at: 'major',
-                message: 'Major number already existed!'
+                message: 'Major already existed!'
             })
         }
         const emailStudent = await Student.findOne({ email: studentInfo.email }).catch(next)
