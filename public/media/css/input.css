@@ -328,4 +328,147 @@ form .cancel input:hover {
     width: 30px;
     height: 30px;
 }
+
+/* Fund page */
+.fund {
+  
+ 
+  box-shadow: 0.5rem 3rem rgba(0, 0, 0, 0);
+  border-radius: 5px;
+}
+
+.year {
+  width: 100%;
+  height: 3rem;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem;
+  text-align: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0. 0.5);
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+
+
+.calendar {
+  width: 8%;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.calendar h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  margin-left: 5px;
+}
+
+
+.fund-details ,.attendance-details{
+  width: 100%;
+  height: 5rem;
+  padding: 0 0.4rem;
+  display: flex;
+  align-items: center;
+  background-color: #00103E;
+  border-radius: 5px;
+}
+
+.fund-details div {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(100%/3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0, 0);
+  color: #FFFFFF;
+  font-style: bold;
+}
+.attendance-details div {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(100%/3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0, 0);
+  color: #FFFFFF;
+  font-style: bold;
+}
+
+.month {
+  width: 100%;
+  height: 5rem;
+  padding: 0 0.4rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #00103E;
+  text-align: center;
+}
+
+.month div {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(100%/3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0, 0);
+  transition: #00103E  0.2s;
+  text-align: center;
+}
+
+.month :hover {
+  cursor: pointer;
+}
+
+.comming-status,.not-yet {
+  color: #CCC;
+  opacity: 0.7;
+}
+
+.in-time-status,.attendance-status  {
+  color: green;
+  font-weight: 400;
+}
+
+.late-status {
+  color: #F5D32D;
+  font-weight: 400;
+}
+
+.not-yet-status, .absent-status {
+  color: red;
+  font-weight: 400;
+}
+
+/* .current {
+  background-color: rgb(207, 223, 247);
+} */
+/* year end */
+@media (max-width: 650px) {
+  .month div {
+      font-size: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-left: 2px;
+      text-align: center;
+  }
+  .fund-details,.attendance-details div {
+      font-size: 1.3rem;
+  }
+  .year h1 {
+      font-size: 1.5rem;
+  }
+}
 /* Saved Successfully end */
