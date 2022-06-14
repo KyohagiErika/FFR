@@ -119,13 +119,63 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
-                    <a
-                            class="signUpBtn mt-3 cursor-pointer rounded-full bg-white py-3 px-6 text-base font-semibold text-cyan-400 duration-300 ease-in-out hover:bg-cyan-600 hover:text-slate-50 drop-shadow-lg"
-                    >
-                        Sign in
-                    </a>
-                </div>
+                {{#if account}}
+                    <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+                        <!-- rounded-full  drop-shadow-lg  bg-white-->
+                        <li class="submenu-item group list-none relative">
+                            <a
+                                    class="user-btn mt-3 cursor-pointer py-3 px-6 text-base font-semibold text-white duration-300 ease-in-out hover:text-cyan-600"
+                            >
+                                <i class="fa-regular fa-user"></i>
+                                <i class="fa-solid fa-circle-arrow-down"></i>
+                            </a>
+                            <div
+                                    class="submenu relative top-full right-0 hidden w-[200px] rounded-xl bg-white p-4 transition-[top] divide-y duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full"
+                            >
+                                <a
+                                        class="block cursor-pointer rounded py-[10px] px-4 font-semibold duration:300 text-sm hover:bg-cyan-600 hover:text-slate-50"
+                                >
+                                    Profile Setting
+                                </a>
+                                <a
+                                        class="block cursor-pointer rounded py-[10px] font-semibold duration:300 px-4 text-sm hover:bg-cyan-600 hover:text-slate-50"
+                                >
+                                    Fund
+                                </a>
+                                <a
+                                        class="block cursor-pointer rounded py-[10px] font-semibold duration:300 px-4 text-sm hover:bg-cyan-600 hover:text-slate-50"
+                                >
+                                    Attendance
+                                </a>
+                                <a
+                                        class="block cursor-pointer rounded py-[10px] font-semibold duration:300 px-4 text-sm hover:bg-cyan-600 hover:text-slate-50"
+                                >
+                                    Advance Setting
+                                </a>
+                                <a
+                                        class="block cursor-pointer rounded py-[10px] font-semibold duration:300 px-4 text-sm hover:bg-cyan-600 hover:text-slate-50"
+                                >
+                                    Switch Account
+                                </a>
+                                <a
+                                        href="/logout"
+                                        class="block cursor-pointer rounded py-[10px] font-semibold duration:300 px-4 text-sm text-red-800 hover:text-red-500"
+                                >
+                                    Sign Out
+                                </a>
+                            </div>
+                        </li>
+                    </div>
+                {{else}}
+                    <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+                        <a
+                                href="/sign-in"
+                                class="signUpBtn mt-3 cursor-pointer rounded-full bg-white py-3 px-6 text-base font-semibold text-cyan-400 duration-300 ease-in-out hover:bg-cyan-600 hover:text-slate-50 drop-shadow-lg"
+                        >
+                            Sign in
+                        </a>
+                    </div>
+                {{/if}}
             </div>
         </div>
     </div>

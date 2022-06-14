@@ -12,7 +12,7 @@
                                 placeholder="Enter your first name"
                                 required
                                 class=""
-                                value="{{firstName}}"
+                                value="{{account.info.firstName}}"
                         />
                     </div>
                     <div class="input-box">
@@ -22,7 +22,7 @@
                                 placeholder="Enter your last name"
                                 required
                                 class=""
-                                value="{{lastName}}"
+                                value="{{account.info.lastName}}"
                         />
                     </div>
                     <div class="input-box">
@@ -32,16 +32,17 @@
                                 placeholder="Enter your student ID"
                                 required
                                 class=""
-                                value="{{studentId}}"
+                                value="{{account.info.studentId}}"
                         />
                     </div>
                     <div class="input-box">
                         <span class="details">Birthday</span>
                         <input
-                                type="text"
+                                type="date"
                                 placeholder="Enter your birthday"
                                 required
                                 class=""
+                                value="{{dobString}}"
                         />
                     </div>
                     <div class="input-box">
@@ -51,7 +52,7 @@
                                 placeholder="Enter your email"
                                 required
                                 class=""
-                                value="{{email}}"
+                                value="{{account.info.email}}"
                         />
                     </div>
                     <div class="input-box">
@@ -61,7 +62,7 @@
                                 placeholder="Enter your phone number"
                                 required
                                 class=""
-                                value="{{phoneNumber}}"
+                                value="{{account.info.phone}}"
                         />
                     </div>
                 </div>

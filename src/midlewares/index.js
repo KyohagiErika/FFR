@@ -9,7 +9,7 @@ const RSC = require('../lib/response-status-code')
  * @param {Function} next - The next() function
  */
 const renderHome = async (req, res, next) => {
-    res.render('home', { layout: 'landing' })
+    res.render('home', { account: req.session.account })
 }
 
 /**

@@ -14,20 +14,26 @@
                         >
                             <a class="font-semibold text-cyan-700 text-3xl">F-Code</a>
                         </a>
+                        {{#if errMsg}}
+                            <p class="text-[#00A1DB]">{{errMsg}}</p>
+                        {{/if}}
                     </div>
-                    <form>
+                    <form method="post" action="">
                         <div class="mb-6">
                             <input
                                     id="username"
-                                    type="email"
-                                    placeholder="Email"
+                                    type="text"
+                                    name="username"
+                                    placeholder="Username"
                                     class="w-full rounded-md border bordder-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-slate-300 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-cyan-400 transition"
+                                    value="{{username}}"
                             />
                         </div>
                         <div class="mb-6">
                             <input
                                     id="password"
                                     type="password"
+                                    name="pass"
                                     placeholder="Password"
                                     class="w-full rounded-md border bordder-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-slate-300 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-cyan-400 transition"
                             />
@@ -45,7 +51,7 @@
                             href="javascript:void(0)"
                             class="text-base inline-block mb-2 text-[#adadad] hover:text-cyan-400"
                     >
-                        Forget Password?
+                        Forget Password? Try to remember it :D
                     </a>
                     <div>
                 <span class="absolute top-1 right-1">
