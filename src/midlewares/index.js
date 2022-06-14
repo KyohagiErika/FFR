@@ -1,4 +1,5 @@
 const out = require('../lib/out')
+const fs = require('fs')
 const RSC = require('../lib/response-status-code')
 
 /**
