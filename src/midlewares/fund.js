@@ -44,7 +44,7 @@ const postFund = async (req, res, next) => {
     let resObj = []
     if(fundInfo.title) {
         await mongoose.connect(config.MONGOOSE_URI).catch(next)
-        const fund = await Attendance.findOne({ title: fundInfo.title }).catch(next)
+        const fund = await Fund.findOne({ title: fundInfo.title }).catch(next)
         if(fund) {
             resStatus = RSC.BAD_REQUEST
             resObj.push({
@@ -141,7 +141,7 @@ const putFund = async (req, res, next) => {
             //     })
             // }
             if (resStatus === RSC.OK) {
-                await Attendance.updateOne({_id: req.query.fundId}, {$set: {title: fundInfo.title}})
+                await Fund.updateOne({_id: req.query.fundId}, {$set: {title: fundInfo.title}})
                 await Student.updateMany({'funds._id': req.query.fundId}, {
                     $set: {
                         'funds.$.title': fundInfo.title,
