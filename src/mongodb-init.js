@@ -1,6 +1,6 @@
-const {config} = require('./config')
-const {DATA_LOCATION} = config.DATA_LOCATION
-const {fs} = require('fs/promises')
+const config = require('./config')
+const DATA_LOCATION = config.DATA_LOCATION
+const fs = require('fs/promises')
 const { MongoClient } = require('mongodb')
 
 const mongoose = require('mongoose')
@@ -24,14 +24,14 @@ setImmediate(async () => {
         displayName: config.ADMIN_DISPLAY_NAME
     })
     await admin.save()
-    const studentData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.STUDENT)))
-    const accountData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.ACCOUNT)))
-    const attendanceData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.ATTENDANCE)))
-    const fundData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.FUND)))
-    await Student.insertMany(studentData)
-    await Account.insertMany(accountData)
-    await Attendance.insertMany(attendanceData)
-    await Fund.insertMany(fundData)
+    // const studentData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.STUDENT)))
+    // const accountData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.ACCOUNT)))
+    // const attendanceData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.ATTENDANCE)))
+    // const fundData = JSON.parse(await fs.readFile(DATA_LOCATION.location(DATA_LOCATION.FUND)))
+    // await Student.insertMany(studentData)
+    // await Account.insertMany(accountData)
+    // await Attendance.insertMany(attendanceData)
+    // await Fund.insertMany(fundData)
     await mongoose.disconnect()
     out.log(out.success('Database initialized successfully!'))
 })

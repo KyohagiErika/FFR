@@ -7,6 +7,7 @@ const AdminSchema = new Schema({
     pass: { type: String, required: true },
     displayName: { type: String, default: 'Admin' }
 })
+const Admin = mongoose.model('Admin', AdminSchema)
 
 exports.AdminSchemaSchema = AdminSchema
-exports.Admin = mongoose.model('Admin', AdminSchema)
+exports.Admin = Admin

@@ -1,43 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Test Page</title>
 </head>
 <body>
     {{{body}}}
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-    axios({
-        url: '/student',
-        method: '/get',
-        data: {
-            studentId: 'SE172125'
-        }
-    }).then(res => {
 
-    })
-    const mainForm = document.getElementById('mainForm')
-    document.getElementById('mainFormSubmit').addEventListener('click', (e) => {
-        const data = new FormData(mainForm)
-        const studentData = new FormData()
-        {
-            studentId: 'SE172831',
-            name: 'Losd Asd',
-            email: 'asdwd@asdasd.asd',
-            phone: '0931239302',
-            gender: 'FEMALE'
-        }
-        const dataObj = {
-            studentId: data.studentId
-        }
-        request('/student', 'post', (res) => {
-            console.log(res.statusCode)
-            console.log(res.responseText)
-        }, data)
-    })
-</script>
+    <script>
+        document.getElementById('img-submit-btn').addEventListener('click', (e) => {
+            e.preventDefault()
+            const data = new FormData(document.getElementById('img-form'))
+            const xhr = new XMLHttpRequest()
+            xhr.open('post', '/test', false)
+            xhr.onload = () => {
+                if (xhr.status === 400) {
+                    alert(xhr.responseText)
+                } else {
+                    document.getElementById('xhr-img-displayer').innerHTML = `<img src="${xhr.responseText}">`
+                }
+            }
+            xhr.setRequestHeader('x-requested-with', 'xmlhttprequest')
+            xhr.send(data)
+            console.log('Data sent!')
+        })
+    </script>
 </body>
 </html>

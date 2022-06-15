@@ -49,6 +49,27 @@ const postStudent = async (req, res, next) => {
             message: 'Student already existed!'
         })
     }
+    // if (await Student.findOne({ firstName: student.firstName }).catch(next)) {
+    //     resStatus = RSC.BAD_REQUEST
+    //     resObj.push({
+    //         at: 'firstName',
+    //         message: 'First Name already existed!'
+    //     })
+    // }
+    // if (await Student.findOne({ lastName: student.lastName }).catch(next)) {
+    //     resStatus = RSC.BAD_REQUEST
+    //     resObj.push({
+    //         at: 'lastName',
+    //         message: 'Last Name already existed!'
+    //     })
+    // }
+    // if (await Student.findOne({ major: student.major }).catch(next)) {
+    //     resStatus = RSC.BAD_REQUEST
+    //     resObj.push({
+    //         at: 'major',
+    //         message: 'Major already existed!'
+    //     })
+    // }
     if (await Student.findOne({ email: student.email }).catch(next)) {
         resStatus = RSC.BAD_REQUEST
         resObj.push({
@@ -63,6 +84,20 @@ const postStudent = async (req, res, next) => {
             message: 'Phone number already existed!'
         })
     }
+    // if (await Student.findOne({ gender: student.gender }).catch(next)) {
+    //     resStatus = RSC.BAD_REQUEST
+    //     resObj.push({
+    //         at: 'gender',
+    //         message: 'Gender already existed!'
+    //     })
+    // }
+    // if (await Student.findOne({ birthday: student.birthday }).catch(next)) {
+    //     resStatus = RSC.BAD_REQUEST
+    //     resObj.push({
+    //         at: 'birthday',
+    //         message: 'Birthday already existed!'
+    //     })
+    // }
     if (resStatus === RSC.OK) {
         const realStudent = new Student(student)
         await realStudent.save().catch(next)
@@ -87,6 +122,30 @@ const putStudent = async (req, res, next) => {
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
     const oldStudent = await Student.findOne({ studentId: req.query.studentId }).catch(next)
     if (oldStudent) {
+        // const studentFirstName = await Student.findOne({ firstName: studentInfo.firstName }).catch(next)
+        // if (studentInfo.firstName && studentFirstName && studentFirstName !== oldStudent) {
+        //     resStatus = RSC.BAD_REQUEST
+        //     resObj.push({
+        //         at: 'firstName',
+        //         message: 'First Name already existed!'
+        //     })
+        // }
+        // const studentLastName = await Student.findOne({ lastName: studentInfo.lastName }).catch(next)
+        // if (studentInfo.lastName && studentLastName && studentLastName !== oldStudent) {
+        //     resStatus = RSC.BAD_REQUEST
+        //     resObj.push({
+        //         at: 'lastName',
+        //         message: 'Last Name already existed!'
+        //     })
+        // }
+        // const majorStudent = await Student.findOne({ major: studentInfo.major }).catch(next)
+        // if (studentInfo.major && majorStudent && majorStudent !== oldStudent) {
+        //     resStatus = RSC.BAD_REQUEST
+        //     resObj.push({
+        //         at: 'major',
+        //         message: 'Major already existed!'
+        //     })
+        // }
         const emailStudent = await Student.findOne({ email: studentInfo.email }).catch(next)
         if (studentInfo.email && emailStudent && emailStudent !== oldStudent) {
             resStatus = RSC.BAD_REQUEST
@@ -103,6 +162,22 @@ const putStudent = async (req, res, next) => {
                 message: 'Phone number already existed!'
             })
         }
+        // const genderStudent = await Student.findOne({ gender: studentInfo.gender }).catch(next)
+        // if (studentInfo.gender && genderStudent && genderStudent !== oldStudent) {
+        //     resStatus = RSC.BAD_REQUEST
+        //     resObj.push({
+        //         at: 'gender',
+        //         message: 'Gender already existed!'
+        //     })
+        // }
+        // const birthdayStudent = await Student.findOne({ birthday: studentInfo.birthday }).catch(next)
+        // if (studentInfo.birthday && birthdayStudent && birthdayStudent !== oldStudent) {
+        //     resStatus = RSC.BAD_REQUEST
+        //     resObj.push({
+        //         at: 'birthday',
+        //         message: 'Birthday already existed!'
+        //     })
+        // }
         if (resStatus === RSC.OK) {
             await Student.updateOne({ studentId: req.query.studentId }, { $set: studentInfo }).catch(next)
             resObj = { message: 'Update student successfully!' }

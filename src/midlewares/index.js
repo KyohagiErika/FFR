@@ -1,19 +1,22 @@
 const out = require('../lib/out')
+const fs = require('fs')
 const RSC = require('../lib/response-status-code')
 
 /**
  * Render Home Page
  * @param {Request} req - HTTP Request Object
  * @param {Response} res - HTTP Response Object
+ * @param {Function} next - The next() function
  */
-const renderHome = async (req, res) => {
-    res.render('home')
+const renderHome = async (req, res, next) => {
+    res.render('home', { layout: 'landing' })
 }
 
 /**
  * Render About Page
  * @param {Request} req - HTTP Request Object
  * @param {Response} res - HTTP Response Object
+ * @param {Function} next - The next() function
  */
 const renderAbout = async (req, res, next) => {
     res.render('about', { bannerName: 'About' })
@@ -23,6 +26,7 @@ const renderAbout = async (req, res, next) => {
  * Logout
  * @param {Request} req - HTTP Request Object
  * @param {Response} res - HTTP Response Object
+ * @param {Function} next - The next() function
  */
 const logout = async (req, res, next) => {
     req.session.account = null
@@ -33,7 +37,7 @@ const logout = async (req, res, next) => {
  * Render 404 Page
  * @param {Request} req - HTTP Request Object
  * @param {Response} res - HTTP Response Object
- * @param {Function} next - next() function
+ * @param {Function} next - The next() function
  */
 const render404 = async (req, res, next) => {
     res.status(RSC.NOT_FOUND).send({ message: 'Not Found!' })
@@ -44,7 +48,7 @@ const render404 = async (req, res, next) => {
  * @param {Error} err - Error Object
  * @param {Request} req - HTTP Request Object
  * @param {Response} res - HTTP Response Object
- * @param {Function} next - next() function
+ * @param {Function} next - The next() function
  */
 const render500 = async (err, req, res, next) => {
     console.log(err)

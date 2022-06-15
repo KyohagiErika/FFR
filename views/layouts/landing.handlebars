@@ -5,12 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FFR F-Code Face Recognition</title>
-    <script
-            src="https://kit.fontawesome.com/fa12b74e4b.js"
-            crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="/media/css/output.css" />
-    <!-- <link href="../css/output.css" rel="stylesheet" /> -->
+    <link href="/media/css/output.css" rel="stylesheet" />
 </head>
 <body class="">
 <!-- //////////////////////////////////////////////////////////////////// -->
@@ -103,7 +98,7 @@
                                         About Page
                                     </a>
                                     <a
-                                            href="signin.html"
+                                            href="/media/page/sign-in.html"
                                             class="block rounded py-[10px] font-semibold duration:300 px-4 text-sm hover:bg-cyan-600 hover:text-slate-50"
                                     >
                                         Sign In Page
@@ -121,6 +116,7 @@
                 </div>
                 <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
                     <a
+                            href="/media/page/sign-in.html"
                             class="signUpBtn mt-3 cursor-pointer rounded-full bg-white py-3 px-6 text-base font-semibold text-cyan-400 duration-300 ease-in-out hover:bg-cyan-600 hover:text-slate-50 drop-shadow-lg"
                     >
                         Sign in
@@ -130,26 +126,10 @@
         </div>
     </div>
 </div>
-<!-- ////////////////////////////////////////////////////////////////////////////////// -->
-{{#if bannerName}}
-    <div
-            class="relative z-10 pt-[120px] md:pt-[130px] lg:pt-[160px] pb-[100px] bg-hero bg-cyan-500 bg-cover bg-left-bottom overflow-hidden"
-    >
-        <div class="container">
-            <div class="flex flex-wrap items-center">
-                <div class="w-full px-4">
-                    <div class="text-center">
-                        <h1 class="font-semibold text-white text-3xl">{{bannerName}}</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div></div>
-    </div>
-    <!-- ////////////////////////////////////////////////////////////////////// -->
-{{/if}}
+<!-- ////////////////////////////////////////////////////////////////////// -->
 {{{body}}}
-<!-- ///////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////// -->
+
 <footer
         class="text-center bg-gray-900 text-white lg:pt-[120px] bg-hero bg-cover bg-left-top"
 >
@@ -361,7 +341,6 @@
     </div>
 </footer>
 </body>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     // ==== for menu scroll
     const pageLink = document.querySelectorAll("menu-scroll");
@@ -403,6 +382,5 @@
 
     window.document.addEventListener("scroll", onScroll);
 </script>
-
 <script src="/media/js/main.js"></script>
 </html>
