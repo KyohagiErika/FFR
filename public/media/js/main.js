@@ -49,12 +49,41 @@ addEventListener('scroll', function() {
   });
 })();
 
-document.getElementById('save').addEventListener('click',
-function() {
-    document.querySelector('.bg-modal').style.display = 'flex';
-});
+// document.getElementById('save').addEventListener('click',
+// function() {
+//     document.querySelector('.bg-modal').style.display = 'flex';
+// });
 
-document.querySelector('.close').addEventListener('click',
-function() {
-    document.querySelector('.bg-modal').style.display = 'none';
-});
+// document.querySelector('.close').addEventListener('click',
+// function() {
+//     document.querySelector('.bg-modal').style.display = 'none';
+// });
+
+//deleta btn 
+
+let btnRemove= document.getElementById('removeBtn');
+const removeSuccess= () =>{	
+  btnRemove.classList.remove('success');
+  let remove = document.getElementById('remove');
+  remove.innerText='remove';
+
+  }
+
+btnRemovehandle = () => {
+      btnRemove.classList.add('success');
+  
+      let remove = document.getElementById('remove');
+      remove.innerText='success'
+      setTimeout(removeSuccess, 2000);
+      
+  };
+////////////////////accept js
+const button = document.querySelector('.acceptBtn');
+
+const removefinish =() =>{
+  button.classList.remove('finished');
+}
+btnSucceshandle = () =>{
+  button.classList.add('finished');
+  setTimeout(removefinish, 3000);
+}
