@@ -6,3 +6,4 @@ package-lock.json
 Dockerfile
 .dockerignore
 public/uploads
+.vscode
