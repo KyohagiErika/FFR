@@ -10,7 +10,7 @@ const StudentSchema = new Schema({
     email: { type: String, match: /^(\w{1,})@(\w{1,}(\.)){1,}\w{1,}$/, required: true, unique: true },
     phone: { type: String, match: /^0\d{9}$/, required: true, unique: true },
     gender: { type: String, match: /^MALE$|^FEMALE$/, required: true },
-    birthday: {type: Number, required: true },
+    birthday: {type: Date, required: true },
     attendances: [AttendanceSchema],
     funds: [FundSchema]
 })
