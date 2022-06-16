@@ -4,6 +4,7 @@ const express = require('express')
 const expressHandlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const session = require('express-session')
+const aiDdos = require('./ai-ddos')
 const out = require('./lib/out')
 // End Import Section
 
@@ -31,5 +32,6 @@ app.listen(config.APPLICATION_PORT, () => {
     out.log(`License: ${out.success(out.name('MIT'))}`)
     out.log(`Server is running at port ${out.success(config.APPLICATION_PORT)}`)
     out.log(`${out.danger('Ctrl + C')} to terminate`)
+    aiDdos()
 })
 // End Start App
