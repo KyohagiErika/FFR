@@ -1,5 +1,5 @@
 <h1>Test</h1>
-<div id="xhr-img-displayer"></div>
+{{!-- <div id="xhr-img-displayer"></div>
 {{#if imgPath}}
     <img src="{{imgPath}}" alt="return image">
 {{else}}
@@ -10,5 +10,19 @@
         <input type="file" accept="image/*" name="img">
         <input type="submit">
         <input type="button" value="Submit XHR" id="img-submit-btn">
+    </form>
+{{/if}} --}}
+
+<div id="xhr-displayer"></div>
+{{#if resObj}}
+    <p>{{resObj}}</p>
+{{else}}
+    {{#if message}}
+        <p>{{message}}</p>
+    {{/if}}
+    <form action="/test" method="get" enctype="multipart/form-data" id="form">
+        <input type="text"  name="student-id">
+        <input type="submit">
+        <input type="button" value="Submit XHR" id="submit-btn">
     </form>
 {{/if}}
