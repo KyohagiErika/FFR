@@ -44,6 +44,8 @@ routes.use('/attendance', require('./attendance'))
 routes.use('/fund', require('./fund'))
 routes.use('/admin', require('./admin'))
 routes.use('/user', require('./user'))
+routes.use('/camera', require('./camera'))
+routes.use('/ai', require('./ai'))
 routes.use(indexMiddleware.render404)
 routes.use(indexMiddleware.render500)
 
