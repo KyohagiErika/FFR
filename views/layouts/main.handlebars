@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FFR F-Code Face Recognition</title>
-
+    <script
+            src="https://kit.fontawesome.com/fa12b74e4b.js"
+            crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="/media/css/output.css" />
     <!-- <link href="../css/output.css" rel="stylesheet" /> -->
 </head>
@@ -13,7 +16,7 @@
 <!-- //////////////////////////////////////////////////////////////////// -->
 <div class="header absolute top-0 left-0 z-40 flex w-full items-center">
     <div class="container">
-        <div class="relative -mx-4 flex items-center justify-between">
+        <div class="relative flex items-center justify-between">
             <div class="w-60 max-w-full px-4">
                 <div class="flex-shrink-0 ml-10 cursor-pointer">
               <span
@@ -45,7 +48,7 @@
                         <ul class="block lg:flex ml-20">
                             <li class="group relative">
                                 <a
-                                        href="#"
+                                        href="/"
                                         class="menu-scroll mx-8 font-semibold flex py-2 text-base text-dark group-hover:text-cyan-500 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70"
                                 >
                                     Home
@@ -100,7 +103,7 @@
                                         About Page
                                     </a>
                                     <a
-                                            href="signin.html"
+                                            href="/sign-in"
                                             class="block rounded py-[10px] font-semibold duration:300 px-4 text-sm hover:bg-cyan-600 hover:text-slate-50"
                                     >
                                         Sign In Page
@@ -116,13 +119,64 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
-                    <a
-                            class="signUpBtn mt-3 cursor-pointer rounded-full bg-white py-3 px-6 text-base font-semibold text-cyan-400 duration-300 ease-in-out hover:bg-cyan-600 hover:text-slate-50 drop-shadow-lg"
-                    >
-                        Sign in
-                    </a>
-                </div>
+                {{#if account}}
+                    <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+                        <!-- rounded-full  drop-shadow-lg  bg-white-->
+                        <li class="submenu-item group list-none relative">
+                            <a
+                                    class="user-btn mt-3 cursor-pointer py-3 px-6 text-base font-semibold text-white duration-300 ease-in-out hover:text-cyan-600"
+                            >
+                                <i class="fa-regular fa-user"></i>
+                                <i class="fa-solid fa-circle-arrow-down"></i>
+                            </a>
+                            <div
+                                    class="submenu relative top-full right-0 hidden w-[200px] rounded-xl bg-white p-4 transition-[top] divide-y duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full"
+                            >
+                                <a
+                                        href="/user/profile"
+                                        class="block cursor-pointer rounded py-[10px] px-4 font-semibold duration:300 text-sm hover:bg-cyan-600 hover:text-slate-50"
+                                >
+                                    Profile Setting
+                                </a>
+                                <a
+                                        class="block cursor-pointer rounded py-[10px] font-semibold duration:300 px-4 text-sm hover:bg-cyan-600 hover:text-slate-50"
+                                >
+                                    Fund
+                                </a>
+                                <a
+                                        class="block cursor-pointer rounded py-[10px] font-semibold duration:300 px-4 text-sm hover:bg-cyan-600 hover:text-slate-50"
+                                >
+                                    Attendance
+                                </a>
+                                <a
+                                        class="block cursor-pointer rounded py-[10px] font-semibold duration:300 px-4 text-sm hover:bg-cyan-600 hover:text-slate-50"
+                                >
+                                    Advance Setting
+                                </a>
+                                <a
+                                        class="block cursor-pointer rounded py-[10px] font-semibold duration:300 px-4 text-sm hover:bg-cyan-600 hover:text-slate-50"
+                                >
+                                    Switch Account
+                                </a>
+                                <a
+                                        href="/logout"
+                                        class="block cursor-pointer rounded py-[10px] font-semibold duration:300 px-4 text-sm text-red-800 hover:text-red-500"
+                                >
+                                    Sign Out
+                                </a>
+                            </div>
+                        </li>
+                    </div>
+                {{else}}
+                    <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+                        <a
+                                href="/sign-in"
+                                class="signUpBtn mt-3 cursor-pointer rounded-full bg-white py-3 px-6 text-base font-semibold text-cyan-400 duration-300 ease-in-out hover:bg-cyan-600 hover:text-slate-50 drop-shadow-lg"
+                        >
+                            Sign in
+                        </a>
+                    </div>
+                {{/if}}
             </div>
         </div>
     </div>
@@ -133,18 +187,18 @@
             class="relative z-10 pt-[120px] md:pt-[130px] lg:pt-[160px] pb-[100px] bg-hero bg-cyan-500 bg-cover bg-left-bottom overflow-hidden"
     >
         <div class="container">
-            <div class="flex flex-wrap items-center -mx-4">
+            <div class="flex flex-wrap items-center">
                 <div class="w-full px-4">
                     <div class="text-center">
-                        <h1 class="font-semibold text-white text-3xl">Sign In</h1>
+                        <h1 class="font-semibold text-white text-3xl">{{bannerName}}</h1>
                     </div>
                 </div>
             </div>
         </div>
         <div></div>
     </div>
+    <!-- ////////////////////////////////////////////////////////////////////// -->
 {{/if}}
-<!-- ////////////////////////////////////////////////////////////////////// -->
 {{{body}}}
 <!-- ///////////////////////////////////////////////////////////////////////////// -->
 <footer
@@ -354,8 +408,7 @@
     </div>
 
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.2)">
-        © 2022 Copyright:
-        <a class="text-white">FFR</a>
+        Copyright (c) 2022 <a class="text-white">F-Code</a>. <a href="/LICENSE.txt">View license.</a>
     </div>
 </footer>
 </body>

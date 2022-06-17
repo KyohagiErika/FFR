@@ -20,7 +20,7 @@ const renderDashboard = async (req, res, next) => {
  * @param {Function} next
  */
 const renderLogin = async (req, res, next) => {
-    res.send('Login page')
+    res.render('admin-login', { bannerName: 'Admin Login' })
 }
 
 /**

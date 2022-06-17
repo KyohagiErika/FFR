@@ -10,6 +10,7 @@ exports.ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'root'
 exports.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || ''
 exports.ADMIN_DISPLAY_NAME = process.env.ADMIN_DISPLAY_NAME || 'Admin'
 exports.IMAGE_PATH = process.env.IMAGE_PATH || 'public/uploads/'
+exports.AI_SERVER_URL = process.env.AI_SERVER_URL || 'http://localhost:5000/'
 exports.DATA_LOCATION = {
     STUDENT: 'student',
     ACCOUNT: 'account',

@@ -328,4 +328,281 @@ form .cancel input:hover {
     width: 30px;
     height: 30px;
 }
+
+/* Fund page */
+.fund {
+  
+ 
+  box-shadow: 0.5rem 3rem rgba(0, 0, 0, 0);
+  border-radius: 5px;
+}
+
+.year {
+  width: 100%;
+  height: 3rem;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem;
+  text-align: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0. 0.5);
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+
+
+.calendar {
+  width: 8%;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.calendar h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  margin-left: 5px;
+}
+
+
+.fund-details ,.attendance-details{
+  width: 100%;
+  height: 5rem;
+  padding: 0 0.4rem;
+  display: flex;
+  align-items: center;
+  background-color: #00103E;
+  border-radius: 5px;
+}
+
+.fund-details div {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(100%/3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0, 0);
+  color: #FFFFFF;
+  font-style: bold;
+}
+.attendance-details div {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(100%/3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0, 0);
+  color: #FFFFFF;
+  font-style: bold;
+}
+
+.month {
+  width: 100%;
+  height: 5rem;
+  padding: 0 0.4rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #00103E;
+  text-align: center;
+}
+
+.month div {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(100%/3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0, 0);
+  transition: #00103E  0.2s;
+  text-align: center;
+}
+
+.month :hover {
+  cursor: pointer;
+}
+
+.comming-status,.not-yet {
+  color: #CCC;
+  opacity: 0.7;
+}
+
+.in-time-status,.attendance-status  {
+  color: green;
+  font-weight: 400;
+}
+
+.late-status {
+  color: #F5D32D;
+  font-weight: 400;
+}
+
+.not-yet-status, .absent-status {
+  color: red;
+  font-weight: 400;
+}
+
+/* .current {
+  background-color: rgb(207, 223, 247);
+} */
+/* year end */
+@media (max-width: 650px) {
+  .month div {
+      font-size: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-left: 2px;
+      text-align: center;
+  }
+  .fund-details,.attendance-details div {
+      font-size: 1.3rem;
+  }
+  .year h1 {
+      font-size: 1.5rem;
+  }
+}
+/* delete button */
+
+.FFR-btnDelete {
+	display: block;
+	background-color: #c0392b;
+	width: 150px;
+	height: 50px;
+	line-height: 10px;
+	color: #fff;
+	cursor: pointer;
+	overflow: hidden;
+	border-radius: 100px;
+	box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
+	transition:  all 0.25s cubic-bezier(0.310, -0.105, 0.430, 1.400);
+	}
+	
+	.icon {
+		width: 10%;
+		right: 0;
+		transition:  all 0.25s cubic-bezier(0.310, -0.105, 0.430, 1.400);
+  }
+    .icon .fa-solid {
+			font-size: 30px;
+			vertical-align: middle;
+			transition:  all 0.25s cubic-bezier(0.310, -0.105, 0.430, 1.400), height 0.25s ease;
+		}
+		.icon 	.fa-xmark {
+			height: 36px;
+		}
+		.icon  .fa-check {
+			display: none;
+		}
+	
+  
+    .FFR-btnDelete:hover .btn-remove {
+			left: -72%;
+			opacity: 0;
+		}
+		.FFR-btnDelete:hover .icon {
+			width: 80%;
+      top:3px;
+    }
+    .FFR-btnDelete:hover .fa-solid {
+				font-size: 45px;
+			}
+		
+  .FFR-btnDelete.success {
+		  background-color: #27ae60;
+  }
+  .FFR-btnDelete.success .btn-remove::after {
+    background-color: #27ae60;
+  }
+		.FFR-btnDelete.success .icon  
+			
+			.fa-xmark {
+				display: none;
+			}
+			.FFR-btnDelete.success .icon .fa-check {
+				display: inline-block;
+			}
+		
+      .FFR-btnDelete:hover {
+	  	opacity: .9;}
+    .FFR-btnDelete:hover .icon .fa-xmark {
+			height: 46px;
+		}
+	
+    .FFR-btnDelete:active {
+		opacity: 1;
+	}
+
+.btn-remove,
+	.icon {
+		display: block;
+		height: 100%;
+		text-align: center;
+		position: absolute;
+		top: 18%;
+    right:10%;
+	}
+  .btn-remove {
+		width: 72%;
+		line-height: inherit;
+		font-size: 1rem;
+		text-transform: uppercase;
+		left: 0;
+    top:40%;
+		transition:  all 0.25s cubic-bezier(0.310, -0.105, 0.430, 1.400);
+  }
+		.btn-remove:after {
+			content: '';
+			background-color: #a53125;
+			width: 2px;
+			height: 70%;
+			position: absolute;
+			top: -20%;
+			right: -1px;
+		}
+/* accept css */
+
+.acceptBtn {
+	box-shadow: 0 12px 24px 0 rgba(0,0,0,0.2);
+	text-transform: uppercase;
+	overflow: hidden; 
+}
+.check .fa-solid{
+  display: none;
+}
+
+.finished .submit{
+    display: none;
+}
+
+.finished .check .fa-solid{
+	  display: block ;
+		font-size: 24px;
+		animation: scale 0.5s linear;
+		
+}
+.finished .check .fa-solid{
+    transform-origin: center center; 
+    
+}
+.finished {
+	background-color: lighten(#2ecc71,10%);	
+}
+
+@keyframes scale {
+	0%   { transform: scale(10); }
+	50%  { transform: scale(0.2); }
+	70%  { transform: scale(1.2); }
+	90%  { transform: scale(0.7); }
+	100% { transform: scale(1); }
+}
 /* Saved Successfully end */

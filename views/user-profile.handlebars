@@ -1,0 +1,103 @@
+<div class="container mx-auto">
+    <div class="flex flex-wrap">
+        <div class="w-full px-4 py-6">
+            <div class="title">Update Profile</div>
+            <form action="#">
+                <!-- user profile details start -->
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">First Name</span>
+                        <input
+                                type="text"
+                                placeholder="Enter your first name"
+                                required
+                                class=""
+                                value="{{account.info.firstName}}"
+                        />
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Last Name</span>
+                        <input
+                                type="text"
+                                placeholder="Enter your last name"
+                                required
+                                class=""
+                                value="{{account.info.lastName}}"
+                        />
+                    </div>
+                    <div class="input-box">
+                        <span class="details">ID</span>
+                        <input
+                                type="text"
+                                placeholder="Enter your student ID"
+                                required
+                                class=""
+                                value="{{account.info.studentId}}"
+                        />
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Birthday</span>
+                        <input
+                                type="date"
+                                placeholder="Enter your birthday"
+                                required
+                                class=""
+                                value="{{dobString}}"
+                        />
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        <input
+                                type="email"
+                                placeholder="Enter your email"
+                                required
+                                class=""
+                                value="{{account.info.email}}"
+                        />
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Phone Number</span>
+                        <input
+                                type="tel"
+                                placeholder="Enter your phone number"
+                                required
+                                class=""
+                                value="{{account.info.phone}}"
+                        />
+                    </div>
+                </div>
+                <div class="gender">
+                    <input type="radio" name="gender" id="dot-1" />
+                    <input type="radio" name="gender" id="dot-2" />
+                    <span class="gender-title">Gender</span>
+                    <div class="category">
+                        <label for="dot-1">
+                            <span class="dot one"></span>
+                            <span class="gender">Male</span>
+                        </label>
+                        <label for="dot-2">
+                            <span class="dot two"></span>
+                            <span class="gender">Female</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- user profile details -->
+                <div id="save" class="button">
+                    <input type="submit" class="" value="Save" />
+                </div>
+                <div class="cancel">
+                    <input type="submit" class="" value="Cancel" />
+                </div>
+            </form>
+
+            <!-- Saved Successfully Modal Start -->
+            <div class="bg-modal">
+                <div class="modal-content">
+                    <div class="close">+</div>
+                    <img class="saved-tick" src="/media/checked.png" alt="Saved" />
+                    <p class="saved">Saved successfully</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

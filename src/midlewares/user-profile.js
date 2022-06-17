@@ -1,5 +1,10 @@
 const renderProfile = async (req, res, next) => {
-    res.send(`User Profile : ${req.session.account.info.firstName} ${req.session.account.info.lastName}`)
+    const account = req.session.account
+
+    res.render('user-profile', {
+        bannerName: 'Profile',
+        account: account,
+    })
 }
 
 exports.renderProfile = renderProfile

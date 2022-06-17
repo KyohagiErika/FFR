@@ -21,14 +21,18 @@ const renderSignIn = async (req, res, next) => {
  */
 const signIn = async (req, res, next) => {
     const signature = req.body
-    await mongoose.connect(config.MONGOOSE_URI).catch(next)
-    const account = await Account.findOne(signature, { _id: 0, __v: 0 }).populate('info', { _id: 0, __v: 0 }).catch(next)
-    await mongoose.disconnect().catch(next)
-    if (account) {
-        req.session.account = account
-        res.redirect('/')
-    } else if (!res.headersSent) {
-        res.status(RSC.BAD_REQUEST).render('sign-in', { bannerName: 'Sign In', message: 'Wrong username or password!' })
+    if (signature.username && signature.pass) {
+        await mongoose.connect(config.MONGOOSE_URI).catch(next)
+        const account = await Account.findOne({ username: signature.username, pass: signature.pass }, { _id: 0, __v: 0, pass: 0 }).populate('info', { _id: 0, __v: 0 }).catch(next)
+        await mongoose.disconnect().catch(next)
+        if (account) {
+            req.session.account = account
+            res.redirect('/user/profile')
+        }
+    }
+    if (!res.headersSent) {
+        res.render('sign-in', { bannerName: 'Sign In', errMsg: 'Wrong username or password!' })
+
     }
 }
 
