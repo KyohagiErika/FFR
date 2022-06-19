@@ -1,5 +1,9 @@
 const renderAttendance = async (req, res, next) => {
-    res.send(`User Attendance Info: ${req.session.account.info.attendances}`)
+    res.render('attendance', {
+        bannerName: 'Attendance',
+        account: req.session.account,
+        attendance: req.session.account.info.attendances
+    })
 }
 
 exports.renderAttendance = renderAttendance
