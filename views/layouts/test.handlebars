@@ -10,13 +10,14 @@
             e.preventDefault()
             const data = new FormData(document.getElementById('img-form'))
             const xhr = new XMLHttpRequest()
-            xhr.open('post', '/test', false)
+            xhr.open('post', '/camera')
             xhr.onload = () => {
-                if (xhr.status === 400) {
-                    alert(xhr.responseText)
-                } else {
-                    document.getElementById('xhr-img-displayer').innerHTML = `<img src="${xhr.responseText}">`
-                }
+                // if (xhr.status === 400) {
+                //     alert(xhr.responseText)
+                // } else {
+                //     document.getElementById('xhr-img-displayer').innerHTML = `<img src="${xhr.responseText}">`
+                // }
+                console.log(xhr.responseText)
             }
             xhr.setRequestHeader('x-requested-with', 'xmlhttprequest')
             xhr.send(data)
