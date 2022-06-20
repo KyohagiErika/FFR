@@ -19,7 +19,7 @@ const renderHome = async (req, res, next) => {
  * @param {Function} next - The next() function
  */
 const renderAbout = async (req, res, next) => {
-    res.render('about', { bannerName: 'About' })
+    res.render('about', { bannerName: 'About', account: req.session.account })
 }
 
 /**
