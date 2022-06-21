@@ -10,18 +10,19 @@
                 >
                     <div class="text-center">
                         <div class="relative z-10 inline-block">
-                            <img
+                            {{!-- <img
                                     src="media/camera page/123ecc5d88b-30cb-4501-83df-fb6d5254f64a.png"
                                     alt="image"
                                     class="mx-auto lg:ml-auto"
-                            />
+                            /> --}}
+                            <video autoplay id="video"></video>
                             <div class="flex justify-around pb-6">
-                                <a
+                                <a id="btnScreenshot"
                                         class="block bg-slate-50 justify-center text-green-500 rounded-full py-3 px-9 text-base font-semibold transition duration-300 ease-in-out drop-shadow-xl hover:bg-opacity-90 hover:shadow-lg uppercase cursor-pointer"
                                 >
                                     Take picture
                                 </a>
-                                <a
+                                <a 
                                         id="removeBtn"
                                         onclick="btnRemovehandle()"
                                         class="block FFR-btnDelete bg-slate-50 justify-center rounded-full py-4 px-9 text-base font-semibold transition duration-300 ease-in-out drop-shadow-xl hover:bg-opacity-90 hover:shadow-lg"
@@ -49,15 +50,16 @@
                             Your picture is here!
                         </div>
                         <div class="flex justify-center">
-                            <img
+                            <img   id="rectangle"
                                     src="media/camera page/Rectangle.png"
                                     alt=""
                                     class="pb-4"
                             />
+                            <div id="screenshots"></div>
                         </div>
 
                         <div class="flex justify-center">
-                            <a
+                            <a      id="submitBtn"
                                     onclick="btnSucceshandle() "
                                     class="inline-block acceptBtn bg-slate-50 justify-center text-green-500 rounded-full py-3 px-8 text-base font-semibold transition duration-300 ease-in-out hover:bg-opacity-90 cursor-pointer"
                             >
@@ -65,10 +67,17 @@
                                 <div class="check"><i class="fa-solid fa-check"></i></div>
                             </a>
                         </div>
+                        <div    id="response"
+                                class="py-2 px-3 text-2xl text-center font-semibold text-black hidden"
+                        >
+                            Response here
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <canvas hidden id="canvas"></canvas>
+    <script src="/media/js/camera.js"></script>
 </section>
 <!-- ////////////////////////////////////////////////////////////////////// -->
