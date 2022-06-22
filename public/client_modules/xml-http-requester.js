@@ -44,16 +44,3 @@
     xhr.send(JSON.stringify(data));  
     console.log('Data sent!')
 }
-
-document.getElementById('submit-btn').addEventListener('click', (e) => {
-    e.preventDefault()
-    const data = new FormData(document.getElementById('form'))
-
-     sendXmlHttpRequest('get','/student?studentId='+data.get('student-id'),
-         function (data) {
-             document.getElementById('xhr-displayer').innerText = data
-             },
-         function (error) { 
-             console.log(error);
-             })   
-})

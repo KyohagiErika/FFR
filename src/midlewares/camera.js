@@ -14,11 +14,12 @@ const recognize = async (req, res, next) => {
             await fs.unlink(file.path).catch(next)
             res.status(RSC.BAD_REQUEST).send('Your uploaded file is not an image!')
         } else {
-            let realPath = req.headers["host"] + file.path.replace('public', '')
+            let realPath = req.protocol + "://" + req.headers["host"] + file.path.replace('public', '')
             realPath = realPath.replaceAll('\\', '/')
+            console.log(realPath)
             const xhr = new XMLHttpRequest()
             xhr.open('post', config.AI_SERVER_URL+'/api_v3', false)
-            xhr.setRequestHeader('Content-Type', 'text/json')
+            xhr.setRequestHeader('Content-Type', 'application/json')
             xhr.send(JSON.stringify({ url: realPath }))
             if (xhr.status === 200) {
                 const xhrRes = JSON.parse(xhr.responseText)
@@ -28,7 +29,8 @@ const recognize = async (req, res, next) => {
                     res.send(xhrRes.name)
                 }
             } else {
-                res.status(RSC.BAD_REQUEST).send('AI Server error!')
+                res.status(RSC.BAD_REQUEST).send('AI Server error with message: '+xhr.responseText)
+                // res.status(RSC.BAD_REQUEST).send(xhr.responseText)
             }
             await fs.unlink(file.path).catch(next)
         }
