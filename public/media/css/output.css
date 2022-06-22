@@ -502,6 +502,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .absolute {
   position: absolute;
 }
@@ -632,24 +636,40 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.75rem;
 }
 
-.mb-6 {
-  margin-bottom: 1.5rem;
+.mb-10 {
+  margin-bottom: 2.5rem;
 }
 
-.mb-2\.5 {
-  margin-bottom: 0.625rem;
+.-mt-10 {
+  margin-top: -2.5rem;
 }
 
-.mb-2 {
-  margin-bottom: 0.5rem;
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .mb-0 {
   margin-bottom: 0px;
 }
 
-.mb-4 {
-  margin-bottom: 1rem;
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-2\.5 {
+  margin-bottom: 0.625rem;
 }
 
 .ml-14 {
@@ -664,12 +684,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 60px;
 }
 
-.mb-10 {
-  margin-bottom: 2.5rem;
-}
-
 .mb-5 {
   margin-bottom: 1.25rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
 }
 
 .block {
@@ -698,6 +718,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-\[2px\] {
   height: 2px;
+}
+
+.h-24 {
+  height: 6rem;
+}
+
+.h-12 {
+  height: 3rem;
 }
 
 .h-9 {
@@ -738,6 +766,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-\[200px\] {
   width: 200px;
+}
+
+.w-24 {
+  width: 6rem;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-9 {
@@ -792,8 +828,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-width: 160px;
 }
 
+.flex-1 {
+  flex: 1 1 0%;
+}
+
 .flex-shrink-0 {
   flex-shrink: 0;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 
 .-translate-y-1\/2 {
@@ -811,6 +855,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .list-none {
   list-style-type: none;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .flex-wrap {
@@ -843,6 +891,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .justify-around {
   justify-content: space-around;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .gap-2 {
@@ -895,8 +947,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 1px;
 }
 
+.border-b {
+  border-bottom-width: 1px;
+}
+
 .border-solid {
   border-style: solid;
+}
+
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
 .border-white {
@@ -924,14 +985,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(6 182 212 / var(--tw-bg-opacity));
 }
 
-.bg-gray-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#f3f4fe\] {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 254 / var(--tw-bg-opacity));
+}
+
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+
+.bg-gray-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
 .bg-slate-50 {
@@ -964,8 +1035,48 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(8 145 178 / var(--tw-bg-opacity));
 }
 
+.bg-gradient-to-tr {
+  background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+}
+
 .bg-\[url\(\'\/src\/media\/hero\/31620322\.png\'\)\] {
   background-image: url('/src/media/hero/31620322.png');
+}
+
+.from-orange-500 {
+  --tw-gradient-from: #f97316;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(249 115 22 / 0));
+}
+
+.from-pink-500 {
+  --tw-gradient-from: #ec4899;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(236 72 153 / 0));
+}
+
+.from-purple-500 {
+  --tw-gradient-from: #a855f7;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(168 85 247 / 0));
+}
+
+.from-blue-500 {
+  --tw-gradient-from: #3b82f6;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(59 130 246 / 0));
+}
+
+.to-orange-700 {
+  --tw-gradient-to: #c2410c;
+}
+
+.to-pink-700 {
+  --tw-gradient-to: #be185d;
+}
+
+.to-purple-700 {
+  --tw-gradient-to: #7e22ce;
+}
+
+.to-blue-700 {
+  --tw-gradient-to: #1d4ed8;
 }
 
 .bg-cover {
@@ -1036,9 +1147,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 1.5rem;
 }
 
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .py-1\.5 {
@@ -1051,14 +1162,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.25rem;
 }
 
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .px-9 {
   padding-left: 2.25rem;
   padding-right: 2.25rem;
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .px-7 {
@@ -1101,6 +1212,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-\[80px\] {
   padding-bottom: 80px;
+}
+
+.pl-4 {
+  padding-left: 1rem;
+}
+
+.pl-0 {
+  padding-left: 0px;
 }
 
 .pt-6 {
@@ -1147,6 +1266,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -1181,6 +1304,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 600;
 }
 
+.font-light {
+  font-weight: 300;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1213,6 +1340,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.625;
 }
 
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
+
 .text-slate-50 {
   --tw-text-opacity: 1;
   color: rgb(248 250 252 / var(--tw-text-opacity));
@@ -1226,6 +1357,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-red-800 {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
 .text-slate-100 {
@@ -1314,6 +1455,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -1329,13 +1476,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.drop-shadow-2xl {
-  --tw-drop-shadow: drop-shadow(0 25px 25px rgba(0, 105, 172, 0.25));
+.drop-shadow-xl {
+  --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.drop-shadow-xl {
-  --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+.drop-shadow-2xl {
+  --tw-drop-shadow: drop-shadow(0 25px 25px rgba(0, 105, 172, 0.25));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
@@ -1357,6 +1504,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-duration: 300ms;
 }
 
+.duration-200 {
+  transition-duration: 200ms;
+}
+
 .duration-150 {
   transition-duration: 150ms;
 }
@@ -1367,6 +1518,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ease-in {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 
 .sticky {
@@ -1724,7 +1879,6 @@ form .cancel input:hover {
   width: 8%;
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
 }
 
 .calendar h1 {
@@ -2025,6 +2179,179 @@ form .cancel input:hover {
   }
 }
 
+/* //////////// */
+
+.container-edit {
+  /* width: 30%; */
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-admin {
+  /* margin-left: 10px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border-radius: 5px; */
+}
+
+.admin {
+  width: 95vw;
+  margin-top:40px;
+  box-shadow: 0.5rem 3rem rgba(0, 0, 0, 0);
+  border-radius: 5px;
+}
+
+.title {
+  width: 100%;
+  background-color: #FFFFFF;
+  display: inline-block;
+  justify-content: space-between;
+  align-items: left;
+  padding: 0.2rem;
+  text-align: left;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0. 0.5);
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
+
+.calendar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem .25rem;
+}
+
+.calendar h1 {
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+  margin-left: 5px;
+}
+
+.all {
+  background-color: #00103E;
+  color: #FFFFFF;
+  border-radius: 8px;
+  font-size: 16px;
+  padding:5px;
+}
+
+.white {
+  color: #FFFFFF;
+  margin-left: 4px;
+  font-size: 16px;
+}
+
+.admin-details {
+  width: 100%;
+  height: 5rem;
+  padding: 0 0.4rem;
+  display: flex;
+  align-items: center;
+  background-color: #00103E;
+  border-radius: 5px;
+}
+
+.admin-details div {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(100%/3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0, 0);
+  color: #FFFFFF;
+  font-style: bold;
+}
+
+.month {
+  width: 100%;
+  height: 5rem;
+  padding: 0 0.4rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.month div {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(100%/3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0, 0);
+  transition: #00103E  0.2s;
+  text-align: center;
+}
+
+.fa-size{
+  font-size: 50px;
+}
+
+.month :hover {
+  cursor: pointer;
+}
+
+.green {
+  color: green;
+  font-weight: 400;
+}
+
+.yellow {
+  color: #F5D32D;
+  font-weight: 400;
+}
+
+.red {
+  color: red;
+  font-weight: 400;
+}
+
+/* .current {
+  background-color: rgb(207, 223, 247);
+} */
+
+/* year end */
+
+@media (max-width: 650px) {
+  .month div {
+    font-size: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2px;
+    text-align: center;
+  }
+
+  .admin-details div {
+    font-size: 1.3rem;
+  }
+
+  .title h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 280px) {
+  .month div {
+    font-size: 1rem;
+  }
+
+  .admin-details div {
+    font-size: 1.1rem;
+  }
+
+  .title h1 {
+    font-size: 1.2rem;
+  }
+}
+
 /* Saved Successfully end */
 
 .after\:absolute::after {
@@ -2089,6 +2416,16 @@ form .cancel input:hover {
   background-color: rgb(8 145 178 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-blue-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-red-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-black:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
@@ -2134,6 +2471,11 @@ form .cancel input:hover {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.hover\:drop-shadow-lg:hover {
+  --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .focus\:border-blue-600:focus {
   --tw-border-opacity: 1;
   border-color: rgb(37 99 235 / var(--tw-border-opacity));
@@ -2169,6 +2511,28 @@ form .cancel input:hover {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\:ring-blue-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-red-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-offset-2:focus {
+  --tw-ring-offset-width: 2px;
+}
+
+.focus\:ring-offset-blue-200:focus {
+  --tw-ring-offset-color: #bfdbfe;
+}
+
+.focus\:ring-offset-red-200:focus {
+  --tw-ring-offset-color: #fecaca;
 }
 
 .focus-visible\:shadow-none:focus-visible {
@@ -2367,6 +2731,10 @@ form .cancel input:hover {
     max-width: 565px;
   }
 
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -2506,6 +2874,10 @@ form .cancel input:hover {
 
   .xl\:max-w-\[640px\] {
     max-width: 640px;
+  }
+
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .xl\:p-\[70px\] {
