@@ -357,7 +357,7 @@ form .cancel input:hover {
   width: 8%;
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
+ 
 }
 
 .calendar h1 {
@@ -604,5 +604,177 @@ form .cancel input:hover {
 	70%  { transform: scale(1.2); }
 	90%  { transform: scale(0.7); }
 	100% { transform: scale(1); }
+}
+/* //////////// */
+.container-edit {
+  /* width: 30%; */
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-admin {
+  /* margin-left: 10px; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* border-radius: 5px; */
+}
+
+.admin {
+  width: 95vw;
+  margin-top:40px;
+  box-shadow: 0.5rem 3rem rgba(0, 0, 0, 0);
+  border-radius: 5px;
+}
+
+.title {
+  width: 100%;
+
+  background-color: #FFFFFF;
+  display: inline-block;
+  justify-content: space-between;
+  align-items: left;
+  padding: 0.2rem;
+  text-align: left;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0. 0.5);
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
+
+
+.calendar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem .25rem;
+
+}
+
+.calendar h1 {
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+  margin-left: 5px;
+}
+
+
+.all {
+  background-color: #00103E;
+  color: #FFFFFF;
+  border-radius: 8px;
+  font-size: 16px;
+  padding:5px;
+}
+
+.white {
+  color: #FFFFFF;
+  margin-left: 4px;
+  font-size: 16px;;
+}
+
+.admin-details {
+  width: 100%;
+  height: 5rem;
+  padding: 0 0.4rem;
+  display: flex;
+  align-items: center;
+  background-color: #00103E;
+  border-radius: 5px;
+}
+
+.admin-details div {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(100%/3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0, 0);
+  color: #FFFFFF;
+  font-style: bold;
+}
+
+.month {
+  width: 100%;
+  height: 5rem;
+  padding: 0 0.4rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.month div {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(100%/3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0, 0);
+  transition: #00103E  0.2s;
+  text-align: center;
+}
+.fa-size{
+  font-size: 50px;
+
+}
+
+.month :hover {
+  cursor: pointer;
+}
+
+.green {
+  color: green;
+  font-weight: 400;
+}
+
+.yellow {
+  color: #F5D32D;
+  font-weight: 400;
+}
+
+.red {
+  color: red;
+  font-weight: 400;
+}
+
+/* .current {
+  background-color: rgb(207, 223, 247);
+} */
+/* year end */
+
+
+@media (max-width: 650px) {
+  .month div {
+      font-size: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-left: 2px;
+      text-align: center;
+  }
+  .admin-details div {
+      font-size: 1.3rem;
+  }
+  .title h1 {
+      font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 280px) {
+  .month div {
+      font-size: 1rem;
+  }
+  .admin-details div {
+      font-size: 1.1rem;
+  }
+  .title h1 {
+      font-size: 1.2rem;
+  }
 }
 /* Saved Successfully end */
