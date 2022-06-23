@@ -1,0 +1,186 @@
+<section>
+    <h1>Student / Account</h1>
+    <table>
+        <thead>
+        <th>
+        <td>#</td>
+        <td>Student ID</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Email</td>
+        <td>Phone</td>
+        <td>Gender</td>
+        <td>Birthday</td>
+        </th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>SE172125</td>
+            <td>Thành Long</td>
+            <td>Lê</td>
+            <td>long@gmail.com</td>
+            <td>0123456789</td>
+            <td>MALE</td>
+            <td>20/13/2003</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+        <th>
+        <td>#</td>
+        <td>Student ID</td>
+        <td>Username</td>
+        <td>Password</td>
+        </th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>SE172125</td>
+            <td>long123</td>
+            <td>Long123</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <form action="">
+        <div class="form-group">
+            <label for="">Student ID</label>
+            <select name="studentId" id="studentId">
+                <option value="SE172125">Lê Thành Long</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="">First Name</label>
+            <input type="text" name="firstName" value="Thành Long">
+        </div>
+        <div class="form-group">
+            <label for="">Last Name</label>
+            <input type="text" name="lastName" value="Lê">
+        </div>
+        <div class="form-group">
+            <label for="">Email</label>
+            <input type="email" name="mail" value="long@gmail.com">
+        </div>
+        <div class="form-group">
+            <label for="">Phone Number</label>
+            <input type="text" name="phone" value="0123456789">
+        </div>
+        <div class="form-group">
+            <label for="">Date of Birth</label>
+            <input type="date" name="birthday" value="2003-12-20">
+        </div>
+        <div class="form-group">
+            <label for="">Gender</label>
+            <select name="gender" id="gender">
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="">Username</label>
+            <input type="text" name="username" value="long123">
+        </div>
+        <div class="form-group">
+            <label for="">Password</label>
+            <input type="passowrd" name="pass">
+        </div>
+        <input type="submit" value="Edit" name="studentOptype">
+        <input type="submit" value="Create" name="studentOptype">
+        <input type="submit" value="Delete" name="studentOptype">
+        <button type="button">Clear information</button>
+    </form>
+</section>
+<section>
+    <h1>Fund</h1>
+    <table>
+        <thead>
+        <th>
+        <td>#</td>
+        <td>Fund Title</td>
+        </th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Quỹ tháng 6</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Quỹ tháng 7</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Quỹ tháng 8</td>
+        </tr>
+        </tbody>
+    </table>
+    <form action="">
+        <div class="form-group">
+            <label for="fundId">Fund</label>
+            <select name="fundId" id="fundId">
+                <option value="dqwdqwdkjqwd">Quỹ tháng 6</option>
+                <option value="dqwdqwdkjqwd">Quỹ tháng 7</option>
+                <option value="dqwdqwdkjqwd">Quỹ tháng 8</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="fundTitle">Title</label>
+            <input type="text" value="Quỹ tháng 6">
+        </div>
+        <div class="form-group">
+            <label for="">Period</label>
+            <input type="text" value="FALL2021">
+        </div>
+        <input type="submit" value="Edit" name="fundOptype">
+        <input type="submit" value="Create" name="fundOptype">
+        <input type="submit" value="Delete" name="fundOptype">
+        <button type="button">Clear information</button>
+    </form>
+</section>
+<section>
+    <h1>Attendance</h1>
+    <table>
+        <thead>
+        <th>
+        <td>#</td>
+        <td>Attendance Title</td>
+        </th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Họp CLB tháng 6</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Họp CLB tháng 7</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Họp CLB tháng 8</td>
+        </tr>
+        </tbody>
+    </table>
+    <form action="">
+        <div class="form-group">
+            <label for="attendanceId">Attendance</label>
+            <select name="attendanceId" id="attendanceId">
+                <option value="dqwdqwdkjqwd">Họp CLB tháng 6</option>
+                <option value="dqwdqwdkjqwd">Họp CLB tháng 7</option>
+                <option value="dqwdqwdkjqwd">Họp CLB tháng 8</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="attendanceTitle">Title</label>
+            <input type="text" value="Họp CLB tháng 6">
+        </div>
+        <input type="submit" value="Edit" name="attendanceOptype">
+        <input type="submit" value="Create" name="attendanceOptype">
+        <input type="submit" value="Delete" name="attendanceOptype">
+        <button type="button">Clear information</button>
+    </form>
+</section>

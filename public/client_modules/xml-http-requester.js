@@ -9,7 +9,7 @@
  */
  const sendXmlHttpRequest = async (method, url, resolve, reject, data = null, options = null) =>{
     const xhr = new XMLHttpRequest()
-  
+
     xhr.onreadystatechange = function () {    
         if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status >= 200  && this.status < 400) {

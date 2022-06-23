@@ -2,6 +2,7 @@ const config = require('../config')
 const mongoose = require('mongoose')
 const { Admin } = require('../models/admin')
 const RSC = require('../lib/response-status-code')
+const {Student} = require("../models/student")
 
 /**
  * Render Dashboard page
@@ -10,7 +11,7 @@ const RSC = require('../lib/response-status-code')
  * @param {Function} next
  */
 const renderDashboard = async (req, res, next) => {
-    res.send('Dashboard page')
+    res.render('dashboard',{ layout: 'temp' })
 }
 
 /**
@@ -64,7 +65,19 @@ const logout = async (req, res, next) => {
     res.redirect('/admin')
 }
 
+const renderRegisterFace = async (req, res, next) => {
+    await mongoose.connect(config.MONGOOSE_URI).catch(next)
+    const studentList = await Student.find().catch(next)
+    await mongoose.disconnect().catch(next)
+    const realList = []
+    studentList.forEach(student => {
+        realList.push({ name: student.firstName + ' ' + student.lastName, studentId: student.studentId })
+    })
+    res.render('face-register', { layout: 'temp', student: realList })
+}
+
 exports.renderDashboard = renderDashboard
 exports.renderLogin = renderLogin
 exports.login = login
 exports.logout = logout
+exports.renderRegisterFace = renderRegisterFace

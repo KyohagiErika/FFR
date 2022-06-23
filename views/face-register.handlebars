@@ -1,0 +1,10 @@
+<form action="" enctype="multipart/form-data" method="post">
+    <select name="studentId" id="studentId">
+        {{#each student}}
+            <option value="{{studentId}}">{{name}}</option>
+        {{/each}}
+    </select>
+    <input type="file" name="img">
+    <input type="submit">
+    <button type="button" id="scan-btn">Scan</button>
+</form>
