@@ -263,10 +263,52 @@
                       <i class="fa-solid fa-trash-can"></i>
                     </button> -->
                    
-                    <button class="all hover:drop-shadow-lg duration-300">
-                      <span>See all</span>
-                      <i class="fa-solid fa-arrow-right white"></i>
-                    </button>
+                    <div>
+                      <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500  w-64 p-4 shadow rounded bg-blue-900 text-sm font-medium leading-none text-white flex items-center justify-between cursor-pointer" onclick="dropdownHandler()">
+                       Channels
+               <div>
+                   <div class="hidden" id="close">
+                      <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/dropdown_2-svg1.svg" alt="dropdown">
+                   </div>
+                   <div id="open">
+                       <img class="transform rotate-180" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/dropdown_2-svg1.svg" alt="dropdown">
+                   </div>
+               </div>
+               
+           </button>
+           <div class="w-64 mt-2 p-4 bg-white shadow-md rounded " id="dropdown">
+             <div class="flex items-center justify-between cursor-pointer hover:bg-blue-700 border-b duration-300 border-gray-200 rounded-sm">
+                 <div class="flex items-center">
+                     <div class="pl-4 flex items-center ">
+                         <p id="fb1" tabindex="0" class="focus:outline-none text-sm leading-normal ml-2 duration-300 hover:text-white  text-gray-800">April Meeting</p>
+                     </div>
+                 </div>
+             </div>
+             <div class="flex items-center justify-between border-b border-gray-200 cursor-pointer duration-300 hover:bg-blue-700 rounded-sm">
+               <div class="flex items-center">
+                   <div class="pl-4 flex items-center">
+                       <p id="fb1" tabindex="0" class="focus:outline-none text-sm leading-normal ml-2 hover:text-white duration-300 text-gray-800">May Meeting</p>
+                   </div>
+               </div>
+             </div>
+             <div class="flex items-center justify-between border-b border-gray-200  cursor-pointer duration-300 hover:bg-blue-700 rounded-sm">
+             <div class="flex items-center">
+                 <div class="pl-4 flex items-center">
+                     <p id="fb1" tabindex="0" class="focus:outline-none text-sm leading-normal ml-2 hover:text-white text-gray-800">June Meeting</p>
+                 </div>
+             </div>
+             </div>
+             <div class="flex items-center justify-between border-b border-gray-200  cursor-pointer duration-300 hover:bg-blue-700 rounded-sm">
+           <div class="flex items-center">
+               <div class="pl-4 flex items-center">
+                   <p id="fb1" tabindex="0" class="focus:outline-none text-sm leading-normal ml-2 hover:text-white duration-300 text-gray-800">July Meeting</p>
+               </div>
+           </div>
+             </div>
+ 
+             
+         </div>
+       </div>
                   </div>
                 </div>
                 <div class="admin-details">
