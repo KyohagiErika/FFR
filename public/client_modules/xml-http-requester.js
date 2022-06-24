@@ -5,11 +5,11 @@
  * @param {function} resolve - call when HTTP response is received
  * @param {function} reject - call when HTTP request errored
  * @param {String} data - the body request
- * @param {*} options 
+ * @param {*} headers - the header request
  */
- const sendXmlHttpRequest = async (method, url, resolve, reject, data = null, options = null) =>{
+ const sendXmlHttpRequest = async (method, url, resolve, reject, data = null, headers = null) =>{
     const xhr = new XMLHttpRequest()
-  
+
     xhr.onreadystatechange = function () {    
         if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status >= 200  && this.status < 400) {
@@ -44,16 +44,3 @@
     xhr.send(JSON.stringify(data));  
     console.log('Data sent!')
 }
-
-document.getElementById('submit-btn').addEventListener('click', (e) => {
-    e.preventDefault()
-    const data = new FormData(document.getElementById('form'))
-
-     sendXmlHttpRequest('get','/student?studentId='+data.get('student-id'),
-         function (data) {
-             document.getElementById('xhr-displayer').innerText = data
-             },
-         function (error) { 
-             console.log(error);
-             })   
-})

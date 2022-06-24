@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fund Page</title>
+    <title>Admin Page</title>
     <script
       src="https://kit.fontawesome.com/9ddbcf2d8a.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="/media/css/output.css" />
+    <link rel="stylesheet" href="media/css/output.css" />
   </head>
-  <body>
+  <body class="">
     <!-- //////////////////////////////////////////////////////////// -->
     <div class="header absolute top-0 left-0 z-40 flex w-full items-center">
       <div class="container">
@@ -166,7 +166,7 @@
         </div>
       </div>
     </div>
-    <!-- ///////////////////////////////////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////bg-hero bg-cyan-500////////////////// -->
     <div
       class="relative z-10 pt-[120px] md:pt-[130px] lg:pt-[120px] pb-[80px] bg-hero bg-cyan-500 bg-cover bg-left-bottom overflow-hidden"
     >
@@ -174,12 +174,239 @@
         <div class="flex flex-wrap items-center">
           <div class="w-full px-4">
             <div class="text-center">
-              <h1 class="font-semibold text-white text-3xl">Funding</h1>
+              <h1 class="font-semibold text-white text-3xl">Admin</h1>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div
+      class="relative z-10 pt-[120px] md:pt-[130px] lg:pt-[120px] pb-[80px] bg-[#f3f4fe] overflow-hidden"
+    >
+    
+      <div class="container mx-auto">
+        <div class="flex flex-wrap items-center">
+          <div class="w-full px-4">
+            <div class="grid xl:grid-cols-4 gap-4 lg:grid-cols-2 grid-cols-1">
+              <div class=" mb-10">
+                <div class="bg-white p-4 rounded-xl w-full  shadow-md ">
+                  <div class="flex flex-wrap ">
+                    <div class="bg-gradient-to-tr from-orange-500 to-orange-700 -mt-10 mb-4 rounded-xl text-white grid items-center w-24 h-24 py-4 px-4 justify-center shadow-lg-orange mb-0"><i class="fa-solid fa-size fa-users"></i></div>
+                    <div class="w-full pl-4 max-w-full flex-grow flex-1 mb-2 text-right undefined"><h5 class="text-gray-500 font-light tracking-wide text-base mb-1">Member</h5><span class="text-3xl text-gray-900">150</span></div>
+                  </div>
+                  
+  
+                </div>
+              </div>
+              <div class=" mb-10">
+                <div class="bg-white  rounded-xl w-full shadow-md p-4">
+                  <div class="flex flex-wrap ">
+                  <div class="bg-gradient-to-tr from-pink-500 to-pink-700 -mt-10 mb-4 rounded-xl text-white grid items-center w-24 h-24 py-4 px-4 justify-center shadow-lg-pink mb-0"><i class="fa-solid fa-size  fa-video"></i></div>
+                  <div class="w-full pl-4 max-w-full flex-grow flex-1 mb-2 text-right undefined"><h5 class="text-gray-500 font-light tracking-wide text-base mb-1">Meeting</h5><span class="text-3xl text-gray-900">100</span></div></div>
+    
+                 
+                </div>
+              </div>
+              <div class=" mb-10">
+                <div class="bg-white p-4 rounded-xl w-full shadow-md">
+                  <div class="flex flex-wrap border-b border-gray-200 ">
+                   <div class="bg-gradient-to-tr from-purple-500 to-purple-700 -mt-10 mb-4 rounded-xl text-white grid items-center w-24 h-24 py-4 px-4 justify-center shadow-lg-purple mb-0"><i class="fa-solid fa-size fa-money-bill-wave"></i></div>
+                   <div class="w-full pl-0 max-w-full flex-grow flex-1 mb-2 text-right undefined"><h5 class="text-gray-500 font-light tracking-wide text-base mb-1">Balance Details</h5><span class="text-3xl text-gray-900">100</span></div></div>
+                   <h3 balance-title>Total Balance</sp>
+                  
+                    <h3 balance-money>10 000 000 VND</h3>
+                  </div>
+                  
+                
+                  
+                </div>
+                <div class=" mb-10">
+                  <div class="bg-white p-4 rounded-xl shadow-md">
+                    <div class="flex flex-wrap border-b border-gray-200 ">
+                      <div class="bg-gradient-to-tr from-blue-500 to-blue-700 -mt-10 mb-4 rounded-xl text-white grid items-center w-24 h-24 py-4 px-4 justify-center shadow-lg-blue mb-0"><i class="fa-solid fa-size fa-star"></i></div>
+                      <div class="w-full pl-0 max-w-full flex-grow flex-1 mb-2 text-right undefined"><h5 class="text-gray-500 font-light tracking-wide text-base mb-1">Top core members</h5><span class="text-3xl text-gray-900">3</span></div></div>
+                   
+                    <div class="diamond">
+                        <i class="fa-solid fa-gem"></i>
+                        <span>Trần Nguyễn Nhựt Duy</span>
+                    </div>
+                    <div class="gold">
+                        <i class="fa-solid fa-gem"></i>
+                        <span>Trần Nguyễn Nhựt Duy</span>
+                    </div>
+                    <div class="silver">
+                        <i class="fa-solid fa-gem"></i>
+                        <span>Trần Nguyễn Nhựt Duy</span>
+                    </div>
+  
+                    </div>
+                    
+                  </div>
+  
+                </div>
+              </div>
+              
+              
+            </div>
+            <div class="container-admin">
+              <div class="admin">
+                <div class="title">
+                  <div class="calendar">
+                    <h1 id="current-month" class="current-month">
+                      F-Code July Meeting
+                    </h1>
+                    <!-- <button type="button" class="py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button type="button" class="py-2 px-4 flex justify-center items-center  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button> -->
+                   
+                    <div>
+                      <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500  w-64 p-4 shadow rounded bg-blue-900 text-sm font-medium leading-none text-white flex items-center justify-between cursor-pointer" onclick="dropdownHandler()">
+                       Channels
+               <div>
+                   <div class="hidden" id="close">
+                      <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/dropdown_2-svg1.svg" alt="dropdown">
+                   </div>
+                   <div id="open">
+                       <img class="transform rotate-180" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/dropdown_2-svg1.svg" alt="dropdown">
+                   </div>
+               </div>
+               
+           </button>
+           <div class="w-64 mt-2 p-4 bg-white shadow-md rounded " id="dropdown">
+             <div class="flex items-center justify-between cursor-pointer hover:bg-blue-700 border-b duration-300 border-gray-200 rounded-sm">
+                 <div class="flex items-center">
+                     <div class="pl-4 flex items-center ">
+                         <p id="fb1" tabindex="0" class="focus:outline-none text-sm leading-normal ml-2 duration-300 hover:text-white  text-gray-800">April Meeting</p>
+                     </div>
+                 </div>
+             </div>
+             <div class="flex items-center justify-between border-b border-gray-200 cursor-pointer duration-300 hover:bg-blue-700 rounded-sm">
+               <div class="flex items-center">
+                   <div class="pl-4 flex items-center">
+                       <p id="fb1" tabindex="0" class="focus:outline-none text-sm leading-normal ml-2 hover:text-white duration-300 text-gray-800">May Meeting</p>
+                   </div>
+               </div>
+             </div>
+             <div class="flex items-center justify-between border-b border-gray-200  cursor-pointer duration-300 hover:bg-blue-700 rounded-sm">
+             <div class="flex items-center">
+                 <div class="pl-4 flex items-center">
+                     <p id="fb1" tabindex="0" class="focus:outline-none text-sm leading-normal ml-2 hover:text-white text-gray-800">June Meeting</p>
+                 </div>
+             </div>
+             </div>
+             <div class="flex items-center justify-between border-b border-gray-200  cursor-pointer duration-300 hover:bg-blue-700 rounded-sm">
+           <div class="flex items-center">
+               <div class="pl-4 flex items-center">
+                   <p id="fb1" tabindex="0" class="focus:outline-none text-sm leading-normal ml-2 hover:text-white duration-300 text-gray-800">July Meeting</p>
+               </div>
+           </div>
+             </div>
+ 
+             
+         </div>
+       </div>
+                  </div>
+                </div>
+                <div class="admin-details">
+                  <div>Member</div>
+                  <div>Check in</div>
+                  <div>Fund</div>
+                  <button type="button" class="py-2 px-4 invisible flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button type="button" class="py-2 invisible px-4 flex justify-center items-center  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+                <div class="month">
+                  <div>Trần Nguyễn Nhựt Duy</div>
+                  <div class="red">Absent</div>
+                  <div class="red">Not yet</div>
+                  <button type="button" class="py-2 px-4 flex justify-center  items-center mr-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button type="button" class="py-2 px-4 flex justify-center items-center   bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+                <div class="month current-month">
+                  <div>Lê Thành Long</div>
+                  <div class="green">Attended</div>
+                  <div class="green">In time</div>
+                  <button type="button" class="py-2 px-4 flex justify-center  items-center mr-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button type="button" class="py-2 px-4 flex justify-center items-center   bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+                <div class="month">
+                  <div>Võ Minh Tiến</div>
+                  <div class="yellow">Late</div>
+                  <div class="yellow">Late</div>
+                  <button type="button" class="py-2 px-4 flex justify-center  items-center mr-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button type="button" class="py-2 px-4 flex justify-center items-center   bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+                <div class="month">
+                  <div>Nguyễn Gia Linh</div>
+                  <div class="green">Attended</div>
+                  <div class="yellow">Late</div>
+                  <button type="button" class="py-2 px-4 flex justify-center  items-center mr-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button type="button" class="py-2 px-4 flex justify-center items-center   bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+                <div class="month">
+                  <div>Phạm Công Minh</div>
+                  <div class="yellow">Late</div>
+                  <div class="red">Not yet</div>
+                  <button type="button" class="py-2 px-4 flex justify-center  items-center mr-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button type="button" class="py-2 px-4 flex justify-center items-center   bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+                <div class="month">
+                  <div>Nguyễn Văn B</div>
+                  <div class="red">Absent</div>
+                  <div class="red">Not yet</div>
+                  <button type="button" class="py-2 px-4 flex justify-center  items-center mr-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button type="button" class="py-2 px-4 flex justify-center items-center   bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+                <div class="month">
+                  <div>Nguyễn Văn C</div>
+                  <div class="green">Attended</div>
+                  <div class="yellow">Late</div>
+                  <button type="button" class="py-2 px-4 flex justify-center  items-center mr-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button type="button" class="py-2 px-4 flex justify-center items-center   bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-12 h-12 rounded-lg ">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
     <footer
       class="text-center bg-gray-900 text-white lg:pt-[120px] bg-hero bg-cover bg-left-top"
     >

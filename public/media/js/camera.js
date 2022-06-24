@@ -68,31 +68,26 @@
       var formData = new FormData(document.querySelector("#img-form"))
       let blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
       formData.append('img', blob, 'face.png');
-      imageForm.append('img', blob, 'face.png');
-      // var dataURL = canvas.toDataURL('image/png', 1.0);
-      // var blob = dataURItoBlob(dataURL);
-      // var formData = new FormData(document.forms[0]);
-      // formData.append("img", blob);
 
       //----------------------------------------------
-      // //create xmlhttprequest
-      // const xhr = new XMLHttpRequest()
-      // xhr.open('post', '/camera', false)
-      // xhr.onload = () => {
-      //   response.classList.remove("hidden")
-      //   if (xhr.status === 400) {
-      //     response.innerHTML = xhr.responseText
-      //     //alert(xhr.responseText)
-      //   } else {
-      //     response.innerHTML = 'User name:' + xhr.responseText
-      //     //console.log('User name:'+xhr.responseText)
-      //   }
-      //   response.innerHTML = xhr.responseText
-      //   //console.log(xhr.responseText)
-      // }
-      // xhr.setRequestHeader('x-requested-with', 'xmlhttprequest')
-      // xhr.send(fd)
-      // //console.log('Image sent!')  
+      //create xmlhttprequest
+      const xhr = new XMLHttpRequest()
+      xhr.open('post', '/camera', false)
+      xhr.onload = () => {
+        response.classList.remove("hidden")
+        if (xhr.status === 400) {
+          response.innerHTML = xhr.responseText
+          //alert(xhr.responseText)
+        } else {
+          response.innerHTML = 'User name:' + xhr.responseText
+          //console.log('User name:'+xhr.responseText)
+        }
+        response.innerHTML = xhr.responseText
+        //console.log(xhr.responseText)
+      }
+      xhr.setRequestHeader('x-requested-with', 'xmlhttprequest')
+      xhr.send(fd)
+      //console.log('Image sent!')  
       //-------------------------------------------------
     }
   })
