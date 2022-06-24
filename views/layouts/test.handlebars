@@ -10,12 +10,12 @@
             e.preventDefault()
             const data = new FormData(document.getElementById('img-form'))
             const xhr = new XMLHttpRequest()
-            xhr.open('post', '/test')
+            xhr.open('post', '/camera')
             xhr.onload = () => {
                  if (xhr.status === 400) {
                      alert(xhr.responseText)
                  } else {
-                     document.getElementById('xhr-img-displayer').innerHTML = `<img src="${xhr.responseText}">`
+                     document.getElementById('xhr-img-displayer').innerHTML = xhr.responseText//`<img src="${xhr.responseText}">`
                  }
                 console.log(xhr.responseText)
             }
