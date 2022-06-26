@@ -7,7 +7,7 @@
  * @param {String} data - the body request
  * @param {*} headers - the header request
  */
- const sendXmlHttpRequest = async (method, url, resolve, reject, data = null, headers = null) =>{
+ const sendXmlHttpRequest = async (method, url, resolve, reject, data , headers = null) =>{
     const xhr = new XMLHttpRequest()
 
     xhr.onreadystatechange = function () {    
@@ -22,7 +22,6 @@
                         "status": this.status,
                         "statusText": this.statusText,
                         "response": this.response,
-                        "responseText": this.responseText
                     });
                 }      
             }
@@ -36,11 +35,12 @@
     };
 
     xhr.open(method, url)
-    //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    //xhr.setRequestHeader("Content-Type", "multipart/form-data");
     //xhr.setRequestHeader('X-Requested-With', 'XmlHttpRequest')
 
     xhr.responseType = 'json';
-    xhr.send(JSON.stringify(data));  
-    console.log('Data sent!')
+    xhr.send(data); 
+    console.log('Data sent!');
 }
