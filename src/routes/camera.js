@@ -3,7 +3,7 @@ const routes = require('express').Router()
 const auth = require('../midlewares/auth')
 const upload = require('../midlewares/upload')
 
-routes.get('/', auth.adminOnly, cameraMiddleware.renderCameraPage) 
-routes.post('/', auth.adminXhrOnly, upload.uploadImage.single('img'), cameraMiddleware.recognize)
+routes.get('/', cameraMiddleware.renderCameraPage) //, auth.adminOnly
+routes.post('/', upload.uploadImage.single('img'), cameraMiddleware.recognize)//, auth.adminXhrOnly
 
 module.exports = routes

@@ -11,11 +11,12 @@
             const data = new FormData(document.getElementById('img-form'))
             const xhr = new XMLHttpRequest()
             xhr.open('post', 'https://ffr-ai-server.yellowwater-165ae20a.eastasia.azurecontainerapps.io/api_v1')
+
             xhr.onload = () => {
                  if (xhr.status === 400) {
                      alert(xhr.responseText)
                  } else {
-                     document.getElementById('xhr-img-displayer').innerHTML = `<img src="${xhr.responseText}">`
+                     document.getElementById('xhr-img-displayer').innerHTML = xhr.responseText//`<img src="${xhr.responseText}">`
                  }
                 console.log(xhr.responseText)
             }

@@ -2,47 +2,47 @@
     <h1>Student / Account</h1>
     <table>
         <thead>
-        <th>
-        <td>#</td>
-        <td>Student ID</td>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Email</td>
-        <td>Phone</td>
-        <td>Gender</td>
-        <td>Birthday</td>
-        </th>
+            <th>
+            <td>#</td>
+            <td>Student ID</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Email</td>
+            <td>Phone</td>
+            <td>Gender</td>
+            <td>Birthday</td>
+            </th>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>SE172125</td>
-            <td>Thành Long</td>
-            <td>Lê</td>
-            <td>long@gmail.com</td>
-            <td>0123456789</td>
-            <td>MALE</td>
-            <td>20/13/2003</td>
-        </tr>
+            <tr>
+                <td>1</td>
+                <td>SE172125</td>
+                <td>Thành Long</td>
+                <td>Lê</td>
+                <td>long@gmail.com</td>
+                <td>0123456789</td>
+                <td>MALE</td>
+                <td>20/13/2003</td>
+            </tr>
         </tbody>
     </table>
 
     <table>
         <thead>
-        <th>
-        <td>#</td>
-        <td>Student ID</td>
-        <td>Username</td>
-        <td>Password</td>
-        </th>
+            <th>
+            <td>#</td>
+            <td>Student ID</td>
+            <td>Username</td>
+            <td>Password</td>
+            </th>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>SE172125</td>
-            <td>long123</td>
-            <td>Long123</td>
-        </tr>
+            <tr>
+                <td>1</td>
+                <td>SE172125</td>
+                <td>long123</td>
+                <td>Long123</td>
+            </tr>
         </tbody>
     </table>
 
@@ -98,24 +98,24 @@
     <h1>Fund</h1>
     <table>
         <thead>
-        <th>
-        <td>#</td>
-        <td>Fund Title</td>
-        </th>
+            <th>
+            <td>#</td>
+            <td>Fund Title</td>
+            </th>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>Quỹ tháng 6</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Quỹ tháng 7</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Quỹ tháng 8</td>
-        </tr>
+            <tr>
+                <td>1</td>
+                <td>Quỹ tháng 6</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Quỹ tháng 7</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Quỹ tháng 8</td>
+            </tr>
         </tbody>
     </table>
     <form action="">
@@ -143,44 +143,41 @@
 </section>
 <section>
     <h1>Attendance</h1>
+    <button id="attendance-button">Click here</button>
     <table>
         <thead>
-        <th>
-        <td>#</td>
-        <td>Attendance Title</td>
-        </th>
+            <th>
+            <td>###</td>
+            <td>Title</td>
+            <td>Date</td>
+            </th>
         </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>Họp CLB tháng 6</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Họp CLB tháng 7</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Họp CLB tháng 8</td>
-        </tr>
+        <tbody id="attendance-list" onload="loadAttendanceList">
+
         </tbody>
     </table>
-    <form action="">
+    
+    <form action="" id ="attendanceForm">
         <div class="form-group">
             <label for="attendanceId">Attendance</label>
-            <select name="attendanceId" id="attendanceId">
-                <option value="dqwdqwdkjqwd">Họp CLB tháng 6</option>
-                <option value="dqwdqwdkjqwd">Họp CLB tháng 7</option>
-                <option value="dqwdqwdkjqwd">Họp CLB tháng 8</option>
+            <select name="attendanceId" id="attendanceId" onchange="showTitle(event)">
+
             </select>
         </div>
         <div class="form-group">
             <label for="attendanceTitle">Title</label>
-            <input type="text" value="Họp CLB tháng 6">
+            <input type="text" value="Club Meeting" name="title" id="title">
         </div>
-        <input type="submit" value="Edit" name="attendanceOptype">
-        <input type="submit" value="Create" name="attendanceOptype">
-        <input type="submit" value="Delete" name="attendanceOptype">
-        <button type="button">Clear information</button>
+
+        <div class="form-group">
+            <label for="attendanceDate">Date</label>
+            <input type="text" value="dd/mm/yyyy" name="date" id="date">
+        </div>
+
+        <input type="submit" value="Edit" id="edit-attendance">
+        <input type="submit" value="Create" id="create-attendance">
+        <input type="submit" value="Delete" id="delete-attendance">
+        <input type="submit" value="Clear information" id="clear-information">
+        <div id="resultevent"></div>
     </form>
 </section>
