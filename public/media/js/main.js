@@ -31,7 +31,7 @@ addEventListener('scroll', function() {
   navbarToggler.classList.toggle("navbarTogglerActive");
   navbarCollapse.classList.toggle("hidden");
 });
-   //===== close navbar-collapse when a  clicked
+  //  ===== close navbar-collapse when a  clicked
    document
    .querySelectorAll("#navbarCollapse ul li:not(.submenu-item) a")
    .forEach((e) =>
@@ -48,16 +48,6 @@ addEventListener('scroll', function() {
     });
   });
 })();
-
-// document.getElementById('save').addEventListener('click',
-// function() {
-//     document.querySelector('.bg-modal').style.display = 'flex';
-// });
-
-// document.querySelector('.close').addEventListener('click',
-// function() {
-//     document.querySelector('.bg-modal').style.display = 'none';
-// });
 
 //deleta btn 
 
@@ -87,25 +77,26 @@ btnSucceshandle = () =>{
   button.classList.add('finished');
   setTimeout(removefinish, 3000);
 }
-///////////////////////////////////////////////////////////
-let dropdown = document.getElementById("dropdown");
-let open1 = document.getElementById("open");
-let close1 = document.getElementById("close");
 
-let flag = true;
-const dropdownHandler = () => {
-    if (flag) {
-        dropdown.classList.add("hidden");
-        open1.classList.add("hidden");
-        close1.classList.remove("hidden");
-        flag = false;
-    } else {
-        dropdown.classList.remove("hidden");
-        close1.classList.add("hidden");
-        open1.classList.remove("hidden");
-        flag = true;
-    }
-};
+/////////////////////////dropdown//////////////////////////////////
+// let dropdown = document.getElementById("dropdown");
+// let open1 = document.getElementById("open");
+// let close1 = document.getElementById("close");
+
+// let flag = true;
+// const dropdownHandler = () => {
+//     if (flag) {
+//         dropdown.classList.add("hidden");
+//         open1.classList.add("hidden");
+//         close1.classList.remove("hidden");
+//         flag = false;
+//     } else {
+//         dropdown.classList.remove("hidden");
+//         close1.classList.add("hidden");
+//         open1.classList.remove("hidden");
+//         flag = true;
+//     }
+// };
 //////////////////////////////////////////
 const toggleModal = (modalId, show = true) => {
   const modalEl = document.getElementById(modalId);
