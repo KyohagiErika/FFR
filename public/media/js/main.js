@@ -31,7 +31,7 @@ addEventListener('scroll', function() {
   navbarToggler.classList.toggle("navbarTogglerActive");
   navbarCollapse.classList.toggle("hidden");
 });
-   //===== close navbar-collapse when a  clicked
+  //  ===== close navbar-collapse when a  clicked
    document
    .querySelectorAll("#navbarCollapse ul li:not(.submenu-item) a")
    .forEach((e) =>
@@ -48,16 +48,6 @@ addEventListener('scroll', function() {
     });
   });
 })();
-
-// document.getElementById('save').addEventListener('click',
-// function() {
-//     document.querySelector('.bg-modal').style.display = 'flex';
-// });
-
-// document.querySelector('.close').addEventListener('click',
-// function() {
-//     document.querySelector('.bg-modal').style.display = 'none';
-// });
 
 //deleta btn 
 
@@ -87,22 +77,61 @@ btnSucceshandle = () =>{
   button.classList.add('finished');
   setTimeout(removefinish, 3000);
 }
-///////////////////////////////////////////////////////////
-let dropdown = document.getElementById("dropdown");
-let open1 = document.getElementById("open");
-let close1 = document.getElementById("close");
 
-let flag = true;
-const dropdownHandler = () => {
-    if (flag) {
-        dropdown.classList.add("hidden");
-        open1.classList.add("hidden");
-        close1.classList.remove("hidden");
-        flag = false;
-    } else {
-        dropdown.classList.remove("hidden");
-        close1.classList.add("hidden");
-        open1.classList.remove("hidden");
-        flag = true;
-    }
+/////////////////////////dropdown//////////////////////////////////
+// let dropdown = document.getElementById("dropdown");
+// let open1 = document.getElementById("open");
+// let close1 = document.getElementById("close");
+
+// let flag = true;
+// const dropdownHandler = () => {
+//     if (flag) {
+//         dropdown.classList.add("hidden");
+//         open1.classList.add("hidden");
+//         close1.classList.remove("hidden");
+//         flag = false;
+//     } else {
+//         dropdown.classList.remove("hidden");
+//         close1.classList.add("hidden");
+//         open1.classList.remove("hidden");
+//         flag = true;
+//     }
+// };
+//////////////////////////////////////////
+const toggleModal = (modalId, show = true) => {
+  const modalEl = document.getElementById(modalId);
+
+  if (show) {
+    modalEl.classList.add('flex');
+    modalEl.classList.remove('hidden');
+    modalEl.setAttribute('aria-modal', 'true');
+    modalEl.setAttribute('role', 'dialog');
+    modalEl.removeAttribute('aria-hidden'); // create backdrop element
+
+    var backdropEl = document.createElement('div');
+    backdropEl.setAttribute('modal-backdrop', '');
+    backdropEl.classList.add('bg-gray-900', 'bg-opacity-50', 'fixed', 'inset-0', 'z-40');
+    document.querySelector('main').append(backdropEl);
+  } else {
+    modalEl.classList.add('hidden');
+    modalEl.classList.remove('flex');
+    modalEl.setAttribute('aria-hidden', 'true');
+    modalEl.removeAttribute('aria-modal');
+    modalEl.removeAttribute('role');
+    document.querySelector('[modal-backdrop]').remove();
+  }
 };
+
+window.toggleModal = toggleModal;
+document.querySelectorAll('[data-modal-toggle]').forEach(function (modalToggleEl) {
+  var modalId = modalToggleEl.getAttribute('data-modal-toggle');
+  var modalEl = document.getElementById(modalId);
+
+  if (!modalEl.hasAttribute('aria-hidden') && !modalEl.hasAttribute('aria-modal')) {
+    modalEl.setAttribute('aria-hidden', 'true');
+  }
+
+  modalToggleEl.addEventListener('click', function () {
+    toggleModal(modalId, modalEl.hasAttribute('aria-hidden', 'true'));
+  });
+});

@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 .sticky {
-  padding-bottom:1rem;
-  padding-top: 1rem;;
     position: fixed;
     z-index: 9999;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -624,24 +622,17 @@ form .cancel input:hover {
 }
 
 .admin {
-  width: 95vw;
-  margin-top:40px;
-  box-shadow: 0.5rem 3rem rgba(0, 0, 0, 0);
-  border-radius: 5px;
+  width: 93vw;
 }
 
 .title {
   width: 100%;
-
   background-color: #FFFFFF;
   display: inline-block;
   justify-content: space-between;
-  align-items: left;
   padding: 0.2rem;
   text-align: left;
-  text-shadow: 0.3rem 0.5rem rgba(0, 0, 0. 0.5);
   margin-bottom: 1rem;
-  border-radius: .5rem;
 }
 
 
@@ -661,7 +652,7 @@ form .cancel input:hover {
 
 
 .all {
-  background-color: #00103E;
+  /* background-color: #00103E; */
   color: #FFFFFF;
   border-radius: 8px;
   font-size: 16px;
@@ -680,8 +671,8 @@ form .cancel input:hover {
   padding: 0 0.4rem;
   display: flex;
   align-items: center;
-  background-color: #00103E;
-  border-radius: 5px;
+  /* background-color: #00103E; */
+ 
 }
 
 .admin-details div {
@@ -703,6 +694,7 @@ form .cancel input:hover {
   padding: 0 0.4rem;
   display: flex;
   align-items: center;
+  /* border-bottom-left-radius:0.75rem; */
   text-align: center;
 }
 
