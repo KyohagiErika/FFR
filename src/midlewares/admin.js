@@ -11,7 +11,7 @@ const {Student} = require("../models/student")
  * @param {Function} next
  */
 const renderDashboard = async (req, res, next) => {
-    res.render('dashboard',{ layout: 'temp' })
+    res.render('dashboard', { layout: 'admin', bannerName: 'Admin' })
 }
 
 /**
