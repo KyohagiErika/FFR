@@ -71,20 +71,20 @@
       //----------------------------------------------
       //create xmlhttprequest
       const xhr = new XMLHttpRequest()
-      xhr.open('post', '/camera', false)
+      xhr.open('post', 'https://ffr-ai-server.yellowwater-165ae20a.eastasia.azurecontainerapps.io/api_v1', false)
       xhr.onload = () => {
         response.classList.remove("hidden")
         if (xhr.status === 400) {
           response.innerHTML = xhr.responseText
           //alert(xhr.responseText)
         } else {
-          response.innerHTML = 'User name:' + xhr.responseText
+          response.innerHTML = 'User ID:' + xhr.responseText
           //console.log('User name:'+xhr.responseText)
         }
         response.innerHTML = xhr.responseText
         //console.log(xhr.responseText)
       }
-      xhr.setRequestHeader('x-requested-with', 'xmlhttprequest')
+      // xhr.setRequestHeader('x-requested-with', 'xmlhttprequest')
       xhr.send(formData)
       //console.log('Image sent!')  
       //-------------------------------------------------

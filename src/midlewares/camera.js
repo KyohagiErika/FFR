@@ -2,6 +2,7 @@ const config = require('../config')
 const fs = require("fs/promises")
 const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
 const RSC = require('../lib/response-status-code')
+const { Student } = require('../models/student')
 
 const renderCameraPage = async (req, res, next) => {
     res.render('camera', { bannerName: 'Camera' })
@@ -32,12 +33,28 @@ const recognize = async (req, res, next) => {
                 }
                 // await fs.unlink(file.path).catch(next)
             }
-            xhr.open('post', config.AI_SERVER_URL+'/api_v3')
-            xhr.setRequestHeader('Content-Type', 'application/json')
-            xhr.send(JSON.stringify({ url: realPath }))
+
+            // xhr.open('post', config.AI_SERVER_URL+'/api_v1')
+            // xhr.setRequestHeader('Content-Type', 'application/json')
+            // xhr.send(JSON.stringify({ url: realPath }))
+            
         }
     } else {
         res.status(RSC.BAD_REQUEST).send('Empty sent data!')
+    }
+}
+
+const recognize_v2 = async (req, res, next) => {
+    const studentId = req.body.name
+    if (studentId) {
+        const student = await Student.findById(studentId).populate('attendance').catch(next)
+        if (student) {
+            
+        } else {
+            res.status(RSC.BAD_REQUEST).send('Student not found!')
+        }
+    } else {
+        res.status(RSC.BAD_REQUEST).send('Empty send data!')
     }
 }
 
