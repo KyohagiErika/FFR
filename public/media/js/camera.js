@@ -9,7 +9,6 @@
 
   // get page elements
   const video = document.querySelector("#video");
-  const imageForm = document.querySelector('#img-form')
   const response = document.querySelector("#response");
   const rectangle = document.querySelector("#rectangle");
   const btnSubmit = document.querySelector("#submitBtn");
@@ -65,7 +64,7 @@
   //send image to /camera
   btnSubmit.addEventListener("click", async function () {
     if (screenshotsContainer.children.length > 0) {
-      var formData = new FormData(document.querySelector("#img-form"))
+      var formData = new FormData()
       let blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
       formData.append('img', blob, 'face.png');
 
@@ -86,7 +85,7 @@
         //console.log(xhr.responseText)
       }
       xhr.setRequestHeader('x-requested-with', 'xmlhttprequest')
-      xhr.send(fd)
+      xhr.send(formData)
       //console.log('Image sent!')  
       //-------------------------------------------------
     }
