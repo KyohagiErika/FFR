@@ -65,8 +65,9 @@
   btnSubmit.addEventListener("click", async function () {
     if (screenshotsContainer.children.length > 0) {
       var formData = new FormData()
+      
       let blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-      formData.append('img', blob, 'face.png');
+      formData.append('img',/* blob,*/ 'face.png');
 
       //----------------------------------------------
       //create xmlhttprequest
