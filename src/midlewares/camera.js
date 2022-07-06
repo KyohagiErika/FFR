@@ -1,8 +1,9 @@
 const config = require('../config')
 const fs = require("fs/promises")
-const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
 const RSC = require('../lib/response-status-code')
 const { Student } = require('../models/student')
+const FormData = require('form-data')
+const axios = require('axios').default
 
 const renderCameraPage = async (req, res, next) => {
     res.render('camera', { bannerName: 'Camera' })
@@ -15,6 +16,22 @@ const recognize = async (req, res, next) => {
             await fs.unlink(file.path).catch(next)
             res.status(RSC.BAD_REQUEST).send('Your uploaded file is not an image!')
         } else {
+            // const data = new FormData()
+            // let realPath = req.protocol + "://" + req.headers["host"] + file.path.replace('public', '')
+            // realPath = realPath.replaceAll('\\', '/')
+            // const realFile = await fs.readFile(file.path)
+            // const fileName = file.path.split('/').pop()
+            // data.append('img', realFile, fileName)
+
+            // axios.post(config.AI_SERVER_URL+'/api_v3', data, {
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     }
+            // }).then((axiosResp) => {
+            //     res.send('Success!')
+            //     // res.send(axiosResp)
+            // }).catch(next)
+            
             let realPath = req.protocol + "://" + req.headers["host"] + file.path.replace('public', '')
             realPath = realPath.replaceAll('\\', '/')
             console.log(realPath)
@@ -29,14 +46,13 @@ const recognize = async (req, res, next) => {
                     }
                 } else {
                     res.status(RSC.BAD_REQUEST).send('AI Server error with message: '+xhr.responseText)
-                    // res.status(RSC.BAD_REQUEST).send(xhr.responseText)
                 }
                 // await fs.unlink(file.path).catch(next)
             }
 
-            // xhr.open('post', config.AI_SERVER_URL+'/api_v1')
-            // xhr.setRequestHeader('Content-Type', 'application/json')
-            // xhr.send(JSON.stringify({ url: realPath }))
+            xhr.open('post', config.AI_SERVER_URL+'/api_v1')
+            xhr.setRequestHeader('Content-Type', 'application/json')
+            xhr.send(JSON.stringify({ url: realPath }))
             
         }
     } else {

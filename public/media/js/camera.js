@@ -67,12 +67,13 @@
       var formData = new FormData()
       
       let blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-      formData.append('img',/* blob,*/ 'face.png');
+      formData.append('img', blob, 'face.png');
 
       //----------------------------------------------
       //create xmlhttprequest
       const xhr = new XMLHttpRequest()
-      xhr.open('post', 'https://ffr-ai-server.yellowwater-165ae20a.eastasia.azurecontainerapps.io/api_v1', false)
+      // xhr.open('post', 'https://ffr-ai-server.yellowwater-165ae20a.eastasia.azurecontainerapps.io/api_v1', false)
+      xhr.open('post', '/camera', false)
       xhr.onload = () => {
         response.classList.remove("hidden")
         if (xhr.status === 400) {
