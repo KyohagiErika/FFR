@@ -29,14 +29,14 @@ const recognize = async (req, res, next) => {
                     }
                 } else {
                     res.status(RSC.BAD_REQUEST).send('AI Server error with message: '+xhr.responseText)
-                    // res.status(RSC.BAD_REQUEST).send(xhr.responseText)
+                    res.status(RSC.BAD_REQUEST).send(xhr.responseText)
                 }
-                // await fs.unlink(file.path).catch(next)
+                //await fs.unlink(file.path).catch(next)
             }
 
-            // xhr.open('post', config.AI_SERVER_URL+'/api_v1')
-            // xhr.setRequestHeader('Content-Type', 'application/json')
-            // xhr.send(JSON.stringify({ url: realPath }))
+            xhr.open('post', 'https://ffr-ai-server.yellowwater-165ae20a.eastasia.azurecontainerapps.io/api_v1')
+            xhr.setRequestHeader('Content-Type', 'application/json')
+            xhr.send(JSON.stringify({ url: realPath }))
             
         }
     } else {

@@ -64,10 +64,11 @@
   //send image to /camera
   btnSubmit.addEventListener("click", async function () {
     if (screenshotsContainer.children.length > 0) {
-      var formData = new FormData()
-      
-      let blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-      formData.append('img',/* blob,*/ 'face.png');
+      const formData = new FormData(document.getElementById('img-form-camera'));
+      var dataURL = canvas.toDataURL('image/png')
+      var blob = dataURItoBlob(dataURL);
+      formData.append("file", blob);
+
 
       //----------------------------------------------
       //create xmlhttprequest
@@ -77,21 +78,41 @@
         response.classList.remove("hidden")
         if (xhr.status === 400) {
           response.innerHTML = xhr.responseText
-          //alert(xhr.responseText)
+          alert(xhr.responseText)
         } else {
           response.innerHTML = 'User ID:' + xhr.responseText
-          //console.log('User name:'+xhr.responseText)
+          console.log('User name:' + xhr.responseText)
         }
         response.innerHTML = xhr.responseText
-        //console.log(xhr.responseText)
+        console.log(xhr.responseText)
       }
-      // xhr.setRequestHeader('x-requested-with', 'xmlhttprequest')
+      xhr.setRequestHeader("Content-type", "image/png");
       xhr.send(formData)
-      //console.log('Image sent!')  
+      console.log('Image sent!')
+
       //-------------------------------------------------
     }
   })
 
+  function dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+      byteString = atob(dataURI.split(',')[1]);
+    else
+      byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], { type: mimeString });
+  }
 
 
   // stop video stream
