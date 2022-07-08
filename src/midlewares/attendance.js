@@ -75,6 +75,11 @@ const postAttendance = async (req, res, next) => {
         })
     }
     if (resStatus === RSC.OK) {
+        const students = await Student.find()
+        students.forEach(async student => {
+            student.attendances[student.attendances.length-1].status = 'ABSENT'
+        })
+        await Student.updateMany({}, students)
         const realAttendance = new Attendance(attendanceInfo)
         await realAttendance.save().catch(next)
         realAttendance.status = 'NOT YET'
@@ -83,7 +88,6 @@ const postAttendance = async (req, res, next) => {
                 attendances: realAttendance
             }
         })
-
         resObj = { message: 'Add attendance successfully!' }
     }
     await mongoose.disconnect().catch(next)
