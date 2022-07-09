@@ -11,6 +11,9 @@ const {Student} = require("../models/student")
  * @param {Function} next
  */
 const renderDashboard = async (req, res, next) => {
+    await mongoose.connect(config.MONGOOSE_URI).catch(next)
+
+    await mongoose.disconnect().catch(next)
     res.render('dashboard', { layout: 'admin', bannerName: 'Admin' })
 }
 
