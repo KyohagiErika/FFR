@@ -7,7 +7,7 @@
  * @param {String} data - the body request
  * @param {*} headers - the header request
  */
- const sendXmlHttpRequest = async (method, url, resolve, reject, data , headers = null) =>{
+ const sendXmlHttpRequest = async (method, url, resolve, reject, data = null , headers = null) =>{
     const xhr = new XMLHttpRequest()
 
     xhr.onreadystatechange = function () {    
@@ -18,20 +18,10 @@
                 }
             } else if (this.status >= 400) {
                 if(reject) {
-                    reject({ 
-                        "status": this.status,
-                        "statusText": this.statusText,
-                        "response": this.response,
-                    });
+                    reject(this.response);
                 }      
             }
         }
-    };
-
-    xhr.onerror = function () {    
-        if(reject) {
-            reject(new Error("There was a network error."));
-        }  
     };
 
     xhr.open(method, url)

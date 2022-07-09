@@ -1,112 +1,156 @@
 (function () {
-    const result = document.querySelector("#resultevent")
-    document.getElementById('attendance-button').addEventListener('click', (e) => {
-        e.preventDefault()
-        //const data = new FormData(document.getElementById('form'))
-        sendXmlHttpRequest('get', '/attendance',
-            function (data) {
-                let list=""
-                var i=1;
-                for (attendance of data) {    
-                    var date = attendance.date     
-                    list+="<tr>" +
-                        "<td>"+i+"</td>"+
-                        "<td>"+attendance.title+"</td>"+
-                        "<td>"+date.toISOString().slice(0, 10)+"</td>"+
-                        "</tr>";
-                    i++;
-                }
-                document.getElementById('attendance-list').innerHTML=list
-            },
-            function (error) {
-                //console.log(error.response);
-                result.innerHTML = error.response
-            })
-    })
+    const result = document.querySelector("#result")
+    const createResult = document.querySelector("#createResult")
 
-    document.getElementById('attendance-button').addEventListener('click', (e) => {
-        e.preventDefault()
-        sendXmlHttpRequest('get', '/attendance',
-            function (data) {
-                let list=""
-                for (attendance of data) {             
-                    list+="<option value="+attendance._id+">"+attendance.title+"</option>"
-                }
-                document.getElementById('attendanceId').innerHTML = list
-            },
-            function (error) {
-                //console.log(error.response);
-                result.innerHTML = error.response
-            })
-    })
+    window.onload = loadListAttend()
+
 
     document.getElementById('edit-attendance').addEventListener('click', (e) => {
         e.preventDefault()
-        var select = document.getElementById('attendanceId')
+        var select = document.getElementById('attendID')
         var option = select.options[select.selectedIndex]
-        var title = document.getElementById('title').value
-        var date = document.getElementById('date').value
-        var params = 'title='+title+'&date='+date
-        sendXmlHttpRequest('put', '/attendance?attendanceId='+option.value,  
+        var title = document.getElementById('attendTitle').value
+        var date = document.getElementById('attendDate').value
+        const [day, month, year] = date.split('-');
+        date = new Date(+year, month - 1, +day);
+        console.log(date)
+        var params = 'title=' + title + '&date=' + date
+        sendXmlHttpRequest('put', '/attendance?attendanceId=' + option.value,
             function (data) {
-                for( var response of data) {
+                for (var response of data) {
                     result.innerHTML = response.message
+                    loadListAttend()
                     //console.log(response)
-                }    
+                }
             },
             function (error) {
-                //console.log(error.response);
-                result.innerHTML = error.response
+                var resList = ""
+                for (var response of error) {
+                    resList += response.message + "<br>"
+                    console.log(response)
+                }
+                result.innerHTML = resList
             }, params)
     })
 
-    document.getElementById('create-attendance').addEventListener('click', (e) => {
+    document.getElementById('createAttendance').addEventListener('click', (e) => {
         e.preventDefault()
-        var title = document.getElementById('title').value
-        var date = document.getElementById('date').value
-        var params = 'title='+title+'&date='+date
-        sendXmlHttpRequest('post', '/attendance',  
+        var title = document.getElementById('createAttendTitle').value
+        var date = document.getElementById('createAttendDate').value
+        console.log(date)
+        var params = 'title=' + title + '&date=' + date
+        sendXmlHttpRequest('post', '/attendance',
             function (data) {
-                result.innerHTML = data.message
+                createResult.innerHTML = data.message
+                loadListAttend()
                 //console.log(data.message)
             },
             function (error) {
-                //console.log(error.response);
-                result.innerHTML = error.response
+                var resList = ""
+                for (var response of error) {
+                    resList += response.message + "<br>"
+                    console.log(response)
+                }
+                createResult.innerHTML = resList
             }, params)
     })
 
-    document.getElementById('delete-attendance').addEventListener('click', (e) => {
+    document.getElementById("deleteAttendance").addEventListener('click', (e) => {
         e.preventDefault()
-        var select = document.getElementById('attendanceId')
+        var select = document.getElementById('attendID')
         var option = select.options[select.selectedIndex]
-        sendXmlHttpRequest('delete', '/attendance?attendanceId='+option.value,
+        sendXmlHttpRequest('delete', '/attendance?attendanceId=' + option.value,
             function (data) {
                 //console.log(data.message)
                 result.innerHTML = data.message
+                loadListAttend()
             },
             function (error) {
-                //console.log(error.message);
-                result.innerHTML = error.message
+                var errorList
+                for (var res in error) {
+                    errorList += res.message + "<br>"
+                }
+                result.innerHTML = errorList
             })
     })
+    function loadListAttend() {
+        sendXmlHttpRequest('get', '/attendance',
+            function (data) {
+                let table = ""
+                var i = 1;
+                for (attendance of data) {
+                    table += "<tr class='hover:bg-gray-100'>" +
+                        "<td" +
+                        " class='p-4 whitespace-nowrap text-base font-medium text-gray-900'" +
+                        ">" +
+                        i +
+                        "</td>" +
+                        "<td" +
+                        " class='p-4 flex items-center whitespace-nowrap space-x-6 mr-12 lg:mr-0'" +
+                        ">" +
+                        "<div" +
+                        " class='text-sm font-normal text-gray-500'" +
+                        ">" +
+                        "<div" +
+                        " class='text-base font-semibold text-gray-900'" +
+                        ">" +
+                        attendance.title +
+                        "</div>" +
+                        "</div>" +
+                        "</td>" +
+                        "<td" +
+                        " class='p-4 items-center whitespace-nowrap space-x-6 mr-12 lg:mr-0'" +
+                        ">" +
+                        "<div" +
+                        " class='text-sm font-normal text-gray-500'" +
+                        ">" +
+                        "<div" +
+                        " class='text-base font-semibold text-gray-900'" +
+                        ">" +
+                        dateFormatter(attendance.date) +
+                        "</div>" +
+                        "</div>" +
+                        "</td>" +
+                        "</tr>"
+                    i++;
+                }
+                document.getElementById('attendance-list').innerHTML = table
 
-    document.getElementById('clear-information').addEventListener('click', (e) => {
-        e.preventDefault()
-        document.getElementById('title').value = ""
-        document.getElementById('date').value = ""
-    })
+
+                let list = ""
+                document.getElementById('attendTitle').value = data[0].title
+                document.getElementById('attendDate').value = dateFormatter(data[0].date)
+                for (attendance of data) {
+                    list += "<option value=" + attendance._id + ">" + attendance.title + "</option>"
+                }
+                //console.log(list);
+                document.getElementById('attendID').innerHTML = list
+            },
+            function (error) {
+                console.log(error.response);
+                //result.innerHTML = error.response
+            })
+    }
+    function dateFormatter(ISOdate) {
+        ISOdate = new Date(ISOdate)
+        ISOdate.setDate(ISOdate.getDate() + parseInt(1));
+        return ISOdate.toISOString().replace(/T.*/, '').split('-').reverse().join('-')
+    }
 })();
 
 function showTitle(event) {
-        sendXmlHttpRequest('get', '/attendance?attendanceId='+event.target.value,
-            function (data) {
-                document.getElementById('title').value = data.title
-                document.getElementById('date').value = data.date
-                //console.log(data)
-            },
-            function (error) {
-                //console.log(error);
-                result.innerHTML = error.message
-            })
-  }
+    sendXmlHttpRequest('get', '/attendance?attendanceId=' + event.target.value,
+        function (data) {
+            document.getElementById('attendTitle').value = data.title
+            var ISOdate = new Date(data.date)
+            ISOdate.setDate(ISOdate.getDate() + parseInt(1));
+            document.getElementById('attendDate').value = ISOdate.toISOString().replace(/T.*/, '').split('-').reverse().join('-')
+            //console.log(data)
+            result.innerHTML = ""
+        },
+        function (error) {
+            //console.log(error);
+            result.innerHTML = error.message
+        })
+}
+

@@ -1305,11 +1305,13 @@
                       <button
                           class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                           type="button"
-                          data-modal-toggle="create-attend-modal">
+                          data-modal-toggle="create-attend-modal"
+                          id="create-attendance-button">
                         Create
                       </button>
                         <button
                           type="button"
+                          id="add-attendance-button"
                           data-modal-toggle="add-attend-modal"
                           class="w-1/2 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center sm:w-auto"
                         >
@@ -1347,71 +1349,18 @@
                                 scope="col"
                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase"
                               >
-                                Attendance Title
+                                Title
+                              </th>
+                              <th
+                                scope="col"
+                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase"
+                              >
+                                Date
                               </th>
                             </tr>
                           </thead>
-                          <tbody class="bg-white divide-y divide-gray-200">
-                            <tr class="hover:bg-gray-100">
-                              <td
-                                class="p-4 whitespace-nowrap text-base font-medium text-gray-900"
-                              >
-                                se123489
-                              </td>
-                              <td
-                                class="p-4 flex items-center whitespace-nowrap space-x-6 mr-12 lg:mr-0"
-                              >
-                                <div
-                                  class="text-sm font-normal text-gray-500"
-                                >
-                                  <div
-                                    class="text-base font-semibold text-gray-900"
-                                  >
-                                    Họp CLB tháng 6
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr class="hover:bg-gray-100">
-                              <td
-                                class="p-4 whitespace-nowrap text-base font-medium text-gray-900"
-                              >
-                                se123489
-                              </td>
-                              <td
-                                class="p-4 flex items-center whitespace-nowrap space-x-6 mr-12 lg:mr-0"
-                              >
-                                <div
-                                  class="text-sm font-normal text-gray-500"
-                                >
-                                  <div
-                                    class="text-base font-semibold text-gray-900"
-                                  >
-                                    Họp CLB tháng 7
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr class="hover:bg-gray-100">
-                              <td
-                                class="p-4 whitespace-nowrap text-base font-medium text-gray-900"
-                              >
-                                se123489
-                              </td>
-                              <td
-                                class="p-4 flex items-center whitespace-nowrap space-x-6 mr-12 lg:mr-0"
-                              >
-                                <div
-                                  class="text-sm font-normal text-gray-500"
-                                >
-                                  <div
-                                    class="text-base font-semibold text-gray-900"
-                                  >
-                                    Họp CLB tháng 8
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
+                          <tbody id="attendance-list" class="bg-white divide-y divide-gray-200">
+                            
                           </tbody>
                         </table>
                       </div>
@@ -1456,31 +1405,42 @@
                       <div class="p-6 space-y-6">
                         <form action="#">
                           <label
-                            for="fundId"
+                            for="attendId"
                             class="text-sm font-medium text-gray-900 block"
                             >Attendance</label
                           >
                           <select
-                            name="fundId"
-                            id="fundId"
+                            id="attendID"
                             class="shadow-sm mb-2 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                            onchange="showTitle(event)"
                           >
-                            <option value="3131231">Họp CLB tháng 6</option>
-                            <option value="3131231">Họp CLB tháng 7</option>
-                            <option value="3131231">Họp CLB tháng 8</option>
+
                           </select>
                           <div class="col-span-6 sm:col-span-3">
                             <label
-                              for="fundId"
+                              for="attendTitle"
                               class="text-sm font-medium text-gray-900 block"
                               >Title</label
                             >
                             <input
                               type="text"
-                              name="attendTitle"
-                              id="attendId"
+                              id="attendTitle"
                               class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                               placeholder="Title"
+                              required=""
+                            />
+                          </div>
+                          <div class="col-span-6 sm:col-span-3">
+                            <label
+                              for="attendDate"
+                              class="text-sm font-medium text-gray-900 block"
+                              >Date</label
+                            >
+                            <input
+                              type="text"
+                              id="attendDate"
+                              class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                              placeholder="00/00/0000"
                               required=""
                             />
                           </div>
@@ -1488,22 +1448,27 @@
                       </div>
 
                       <div
-                        class="items-center p-6 border-t border-gray-200 rounded-b"
+                        class="items-center p-6 border-t border-gray-200 rounded-b flex justify-around"
                       >
                         
                         <button
                           class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                          type="submit"
+                          type="button"
+                          id="edit-attendance"
                         >
-                          Edit title
+                          Edit
                         </button>
                         <button
-                          type="button"
+                          type="submit"
                           class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm items-center px-5 py-2.5 text-center"
+                          id="deleteAttendance"
                         >
                           Delete
                         </button>
-                        
+                        <div 
+                        id="result"
+                        class="text-base font-semibold text-gray-900 inline-block"
+                        ></div>
                       </div>
                     </div>
                   </div>
@@ -1548,16 +1513,29 @@
                          
                           <div class="col-span-6 sm:col-span-3">
                             <label
-                              for="fundId"
+                              for="createAttendTitle"
                               class="text-sm font-medium text-gray-900 block"
                               >Title</label
                             >
                             <input
                               type="text"
-                              name="attendTitle"
-                              id="attendId"
+                              id="createAttendTitle"
                               class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                              placeholder="Title"
+                              placeholder="Họp CLB tháng x"
+                              required=""
+                            />
+                          </div>
+                          <div class="col-span-6 sm:col-span-3">
+                            <label
+                              for="createAttendDate"
+                              class="text-sm font-medium text-gray-900 block"
+                              >Date</label
+                            >
+                            <input
+                              type="date"
+                              id="createAttendDate"
+                              class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                              placeholder=""
                               required=""
                             />
                           </div>
@@ -1565,17 +1543,20 @@
                       </div>
 
                       <div
-                        class="items-center p-6 border-t border-gray-200 rounded-b"
+                        class="items-center p-6 border-t border-gray-200 rounded-b flex justify-around"
                       >
                         
                         <button
                           class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                           type="submit"
+                          id="createAttendance"
                         >
                           Create
                         </button>
-                        
-                        
+                        <div 
+                        id="createResult"
+                        class="text-base font-semibold text-gray-900 inline-block "
+                        ></div>                 
                       </div>
                     </div>
                   </div>
@@ -1729,45 +1710,5 @@
         <input type="submit" value="Create" name="fundOptype">
         <input type="submit" value="Delete" name="fundOptype">
         <button type="button">Clear information</button>
-    </form>
-</section>
-<section>
-    <h1>Attendance</h1>
-    <button id="attendance-button">Click here</button>
-    <table>
-        <thead>
-            <th>
-            <td>###</td>
-            <td>Title</td>
-            <td>Date</td>
-            </th>
-        </thead>
-        <tbody id="attendance-list" onload="loadAttendanceList">
-
-        </tbody>
-    </table>
-    
-    <form action="" id ="attendanceForm">
-        <div class="form-group">
-            <label for="attendanceId">Attendance</label>
-            <select name="attendanceId" id="attendanceId" onchange="showTitle(event)">
-
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="attendanceTitle">Title</label>
-            <input type="text" value="Club Meeting" name="title" id="title">
-        </div>
-
-        <div class="form-group">
-            <label for="attendanceDate">Date</label>
-            <input type="text" value="dd/mm/yyyy" name="date" id="date">
-        </div>
-
-        <input type="submit" value="Edit" id="edit-attendance">
-        <input type="submit" value="Create" id="create-attendance">
-        <input type="submit" value="Delete" id="delete-attendance">
-        <input type="submit" value="Clear information" id="clear-information">
-        <div id="resultevent"></div>
     </form>
 </section>
