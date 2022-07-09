@@ -70,7 +70,7 @@ const postAttendance = async (req, res, next) => {
     } else {
         resStatus = RSC.BAD_REQUEST
         resObj.push({
-            at: 'title',
+            at: 'date',
             message: 'Empty attendance date!'
         })
     }
@@ -159,7 +159,7 @@ const putAttendance = async (req, res, next) => {
             }
         })
         resObj.push({
-            message: 'Update attendance title successfully!'
+            message: 'Update attendance successfully!'
         })
     }
 
@@ -206,7 +206,6 @@ const deleteAttendance = async (req, res, next) => {
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
     const attendance = await Attendance.findOneAndDelete({ _id: req.query.attendanceId }).catch(next)
     if (attendance) {
-        resObj = { message: 'Delete attendance successfully!' }
         if (await Student.updateMany({}, {
             $pull: {
                 attendances: {
@@ -214,7 +213,7 @@ const deleteAttendance = async (req, res, next) => {
                 }
             }
         })) {
-            resObj = { message: 'Delete attendance and attendance list successfully!' }
+            resObj = { message: 'Delete attendance successfully!' }
         } else {
             resObj = { message: 'Student list of attendance title not found!' }
         }
