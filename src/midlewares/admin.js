@@ -12,9 +12,37 @@ const {Student} = require("../models/student")
  */
 const renderDashboard = async (req, res, next) => {
     await mongoose.connect(config.MONGOOSE_URI).catch(next)
-
+    const students = await Student.find()
+    const attendance = req.query.attendanceId
+        ? students[0].attendances.find(ele => ele._id.toString() === req.query.attendanceId)
+        : students[0].attendances[students[0].attendances.length-1]
+    const studentInfo = []
+    students.forEach(student => {
+        const studentAttendance = student.attendances.find(ele => ele._id === attendance._id)
+        studentInfo.push({
+            studentId: student.studentId,
+            name: `${student.lastName} ${student.firstName}`,
+            email: student.email,
+            phone: student.phone,
+            gender: student.gender,
+            attendance: studentAttendance ? {
+                status: studentAttendance.status,
+                date: studentAttendance.date,
+            } : {
+                status: 'NOT YET',
+                date: new Date(Date.now())
+            }
+        })
+    })
     await mongoose.disconnect().catch(next)
-    res.render('dashboard', { layout: 'admin', bannerName: 'Admin' })
+    res.render('dashboard', {
+        layout: 'admin',
+        bannerName: 'Admin',
+        students: studentInfo,
+        attendance: {
+            title: attendance.title
+        }
+    })
 }
 
 /**

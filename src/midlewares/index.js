@@ -40,7 +40,12 @@ const logout = async (req, res, next) => {
  * @param {Function} next - The next() function
  */
 const render404 = async (req, res, next) => {
-    res.status(RSC.NOT_FOUND).send({ message: 'Not Found!' })
+    res.status(RSC.NOT_FOUND).render('error', {
+        layout: 'error',
+        message: 'The page which you\'re looking for is not found!',
+        code: RSC.NOT_FOUND,
+        status: 'NOT FOUND'
+    })
 }
 
 /**
@@ -53,9 +58,14 @@ const render404 = async (req, res, next) => {
 const render500 = async (err, req, res, next) => {
     console.log(err)
     if (req.xhr) {
-        res.status(RSC.SERVER_ERROR).send(err)
+        res.status(RSC.SERVER_ERROR).send({ message: 'There are some errors occured!' })
     } else {
-        res.status(RSC.SERVER_ERROR).send(err)
+        res.status(RSC.SERVER_ERROR).render('error', {
+            layout: 'error',
+            code: RSC.SERVER_ERROR,
+            status: 'SERVER ERROR',
+            message: 'There are some errors occured!'
+        })
     }
 }
 
