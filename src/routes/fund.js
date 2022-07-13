@@ -2,9 +2,9 @@ const fundMiddleware = require('../midlewares/fund')
 const routes = require('express').Router()
 const auth = require('../midlewares/auth')
 
-routes.get('/', auth.adminXhrOnly, fundMiddleware.getFund)
-routes.post('/', auth.adminXhrOnly, fundMiddleware.postFund)
-routes.put('/', auth.adminXhrOnly, fundMiddleware.putFund)
-routes.delete('/', auth.adminXhrOnly, fundMiddleware.deleteFund)
+routes.get('/', fundMiddleware.getFund)// auth.adminXhrOnly, 
+routes.post('/', fundMiddleware.postFund)
+routes.put('/', fundMiddleware.putFund)
+routes.delete('/', fundMiddleware.deleteFund)
 
 module.exports = routes

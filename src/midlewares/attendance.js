@@ -75,11 +75,6 @@ const postAttendance = async (req, res, next) => {
         })
     }
     if (resStatus === RSC.OK) {
-        const students = await Student.find()
-        students.forEach(async student => {
-            student.attendances[student.attendances.length-1].status = 'ABSENT'
-        })
-        await Student.updateMany({}, students)
         const realAttendance = new Attendance(attendanceInfo)
         await realAttendance.save().catch(next)
         realAttendance.status = 'NOT YET'
@@ -162,34 +157,6 @@ const putAttendance = async (req, res, next) => {
             message: 'Update attendance successfully!'
         })
     }
-
-    //  if(attendanceInfo.status.match(/^ATTENDED$|^ABSENT$/)) {
-    //     const oldStudent = await Student.findOne({studentId: req.query.studentId, 'attendances._id': req.query.attendanceId})
-    //     if(oldStudent.attendances.status == attendanceInfo.status) {
-    //         resStatus = RSC.BAD_REQUEST
-    //         resObj.push({
-    //             at: 'status',
-    //             message: 'Attendance status already existed!'
-    //         })
-    //     } else {
-
-    //         if (resStatus === RSC.OK) {
-    //             await Student.updateMany({studentId: req.query.studentId, 'attendances._id': req.query.attendanceId}, {
-    //                 $set: {
-    //                     'attendances.$.status' : attendanceInfo.status
-    //                 }
-    //             }).catch(next)
-    //             resObj = { message: 'Update student successfully!' }
-    //         }
-    //     }
-
-    // } else {
-    //     resStatus = RSC.BAD_REQUEST
-    //     resObj.push({
-    //         at: 'status',
-    //         message: 'Attendance status not found!'
-    //     })
-    // }
     await mongoose.disconnect().catch(next)
     res.status(resStatus).send(resObj)
 }
@@ -215,7 +182,7 @@ const deleteAttendance = async (req, res, next) => {
         })) {
             resObj = { message: 'Delete attendance successfully!' }
         } else {
-            resObj = { message: 'Student list of attendance title not found!' }
+            resObj = { message: 'Student list of attendance not found!' }
         }
     } else {
         resStatus = RSC.BAD_REQUEST
