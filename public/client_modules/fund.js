@@ -16,14 +16,12 @@
                 for (var response of data) {
                     result.innerHTML = response.message
                     loadListFund()
-                    //console.log(response)
                 }
             },
             function (error) {
                 var resList = ""
                 for (var response of error) {
                     resList += response.message + "<br>"
-                    //console.log(response)
                 }
                 result.innerHTML = resList
             }, params)
@@ -38,13 +36,11 @@
             function (data) {
                 createResult.innerHTML = data.message
                 loadListFund()
-                //console.log(data.message)
             },
             function (error) {
                 var resList = ""
                 for (var response of error) {
                     resList += response.message + "<br>"
-                    //console.log(response)
                 }
                 createResult.innerHTML = resList
             }, params)
@@ -56,7 +52,6 @@
         var option = select.options[select.selectedIndex]
         sendXmlHttpRequest('delete', '/fund?fundId=' + option.value,
             function (data) {
-                //console.log(data.message)
                 result.innerHTML = data.message
                 loadListFund()
             },
@@ -118,11 +113,9 @@
                 for (fund of fundData) {
                     list += "<option value=" + fund._id + ">" + fund.title + "</option>"
                 }
-                //console.log(list);
                 document.getElementById('fundId').innerHTML = list
             },
             function (error) {
-                //console.log(error.response);
                 result.innerHTML = error.response
             })
     }
@@ -133,11 +126,9 @@ function showFundTitle(event) {
         function (data) {
             document.getElementById('fundTitle').value = data.title
             document.getElementById('fundPeriod').value = data.period
-            //console.log(data)
             result.innerHTML = ""
         },
         function (error) {
-            //console.log(error);
             result.innerHTML = error.message
         })
 }

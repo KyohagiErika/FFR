@@ -25,7 +25,7 @@ const getAttendance = async (req, res, next) => {
     } else {
         resObj = await Attendance.find().catch(next)
     }
-    await mongoose.disconnect().catch(next)
+    //await mongoose.disconnect().catch(next)
     if (!res.headersSent) {
         res.status(resStatus).send(resObj)
     }

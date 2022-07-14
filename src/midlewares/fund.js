@@ -25,7 +25,7 @@ const getFund = async (req, res, next) => {
     } else {
         resObj = await Fund.find({}, { __v: 0 }).catch(next)
     }
-    await mongoose.disconnect().catch(next)
+    //await mongoose.disconnect().catch(next)
     if (!res.headersSent) {
         res.status(resStatus).send(resObj)
     }
