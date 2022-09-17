@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: ffr_db
+    image: mongo:4.2
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: ffr
+    networks:
+      - ffr
+  
+  ai:
+    container_name: ffr-ai
+    image: ffr-ai:latest
+    restart: always
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    networks:
+      - ffr
+
+  be:
+    container_name: ffr-be
+    build: 
+      context: ./FFR
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - ai
+    networks:
+      - ffr
+  
+
+networks:
+  ffr:
+    driver: bridge
