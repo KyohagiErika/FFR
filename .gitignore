@@ -3,7 +3,5 @@ package-lock.json
 .mongodb
 .idea
 .vscode
-Dockerfile
-.dockerignore
 public/uploads
 .vscode
