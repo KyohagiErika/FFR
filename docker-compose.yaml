@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   db:
-    container_name: ffr-db
+    container_name: ffr_db
     image: mongo:4.2
     restart: always
     environment:
@@ -14,7 +14,7 @@ services:
       - ffr
   
   ai:
-    container_name: ffr-ai
+    container_name: ffr_ai
     image: ffr-ai:latest
     restart: always
     ports:
@@ -25,7 +25,7 @@ services:
       - ffr
 
   be:
-    container_name: ffr-be
+    container_name: ffr_be
     build: 
       context: .
       dockerfile: Dockerfile
