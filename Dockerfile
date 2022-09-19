@@ -5,4 +5,3 @@ RUN npm install
 COPY . .
 RUN npm run mongodb-init
 EXPOSE 3000
-CMD ["npm", "start"]

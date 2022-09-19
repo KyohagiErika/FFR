@@ -23,6 +23,10 @@ services:
 
   be:
     container_name: ffr_be
+    command: 
+      - bash
+      - -c
+      - "npm run mongodb-init && npm run start"
     build: 
       context: .
       dockerfile: Dockerfile
