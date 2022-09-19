@@ -5,9 +5,6 @@ services:
     container_name: ffr_db
     image: mongo:4.2
     restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: long
-      MONGO_INITDB_ROOT_PASSWORD: long123
     ports:
       - 27017:27017
     networks:
