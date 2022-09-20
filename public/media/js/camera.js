@@ -1,11 +1,11 @@
 (function () {
-  // if (
-  //   !"mediaDevices" in navigator ||
-  //   !"getUserMedia" in navigator.mediaDevices
-  // ) {
-  //   alert("Camera API is not available in your browser");
-  //   return;
-  // }
+  if (
+    !"mediaDevices" in navigator ||
+    !"getUserMedia" in navigator.mediaDevices
+  ) {
+    alert("Camera API is not available in your browser");
+    return;
+  }
 
   // get page elements
   const video = document.querySelector("#video");
