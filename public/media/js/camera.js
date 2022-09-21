@@ -1,10 +1,12 @@
 (function () {
-  if (
-    !"mediaDevices" in navigator ||
-    !"getUserMedia" in navigator.mediaDevices
-  ) {
-    alert("Camera API is not available in your browser");
-    return;
+  if (navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function (stream) {
+        video.srcObject = stream;
+      })
+      .catch(function (err0r) {
+        console.log("Something went wrong!");
+      });
   }
 
   // get page elements
