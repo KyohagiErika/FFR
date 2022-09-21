@@ -12,6 +12,7 @@ const app = express()
 app.engine('handlebars', expressHandlebars.engine())
 app.set('view engine', 'handlebars')
 app.set('trust proxy', 1)
+app.set('insecure', true)
 app.use(session({
     secret: 'keyboard cat',
     cookie: {
