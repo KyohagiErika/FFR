@@ -1,14 +1,11 @@
 (function () {
-  if (navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(function (stream) {
-        video.srcObject = stream;
-      })
-      .catch(function (err0r) {
-        console.log("Something went wrong!");
-      });
+  if (
+    !"mediaDevices" in navigator ||
+    !"getUserMedia" in navigator.mediaDevices
+  ) {
+    alert("Camera API is not available in your browser");
+    return;
   }
-
   // get page elements
   const video = document.querySelector("#video");
   const response = document.querySelector("#response");
@@ -66,31 +63,31 @@
   //send image to /camera
   btnSubmit.addEventListener("click", async function () {
     if (screenshotsContainer.children.length > 0) {
-      var formData = new FormData()
-      let blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-      formData.append('img', blob, 'face.png');
-
-
-      //----------------------------------------------
-      //create xmlhttprequest
-      const xhr = new XMLHttpRequest()
-      // xhr.open('post', 'https://ffr-ai-server.yellowwater-165ae20a.eastasia.azurecontainerapps.io/api_v1', false)
-      xhr.open('post', '/camera', false)
-      xhr.onload = () => {
-        response.classList.remove("hidden")
-        if (xhr.status === 400) {
+      await canvas.toBlob((blob) => {
+        var formData = new FormData()
+        formData.append('img', blob, 'img.png')
+        //----------------------------------------------
+        //create xmlhttprequest
+        const xhr = new XMLHttpRequest()
+        // xhr.open('post', 'https://ffr-ai-server.yellowwater-165ae20a.eastasia.azurecontainerapps.io/api_v1', false)
+        xhr.open('post', '/camera', false)
+        xhr.onload = () => {
+          response.classList.remove("hidden")
+          if (xhr.status === 400) {
+            response.innerHTML = xhr.responseText
+            alert(xhr.responseText)
+          } else {
+            response.innerHTML = 'User ID:' + xhr.responseText
+            console.log('User name:' + xhr.responseText)
+          }
           response.innerHTML = xhr.responseText
-          alert(xhr.responseText)
-        } else {
-          response.innerHTML = 'User ID:' + xhr.responseText
-          console.log('User name:' + xhr.responseText)
+          console.log(xhr.responseText)
         }
-        response.innerHTML = xhr.responseText
-        console.log(xhr.responseText)
-      }
-      xhr.setRequestHeader("Content-type", "image/png");
-      xhr.send(formData)
-      console.log('Image sent!')
+        // xhr.setRequestHeader("Content-Type", "multipart/form-data");
+        xhr.send(formData)
+        console.log('Image sent!')
+      }, 'image/png');
+      // let blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
 
       //-------------------------------------------------
     }

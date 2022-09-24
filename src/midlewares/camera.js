@@ -13,10 +13,10 @@ const recognize = async (req, res, next) => {
     const file = req.file
     if (file) {
         if (file.mimetype.split('/')[0] !== 'image') {
-            await fs.unlink(file.path).catch(next)
+            // await fs.unlink(file.path).catch(next)
             res.status(RSC.BAD_REQUEST).send('Your uploaded file is not an image!')
         } else {
-            let realPath = req.protocol + "://" + req.headers["host"] + file.path.replace('public', '')
+            let realPath = req.protocol + "://26.23.89.148:3000" + '/uploads/' + file.filename
             axios.post(config.AI_SERVER_URL+'/api_v3', JSON.stringify({ url : realPath }), {
                 headers: {
                     'Content-Type' : 'application/json'

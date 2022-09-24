@@ -1,7 +1,7 @@
-const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
+const axios = require('axios').default
 const config = require('../config')
-const fs = require("fs/promises");
-const RSC = require("../lib/response-status-code");
+const fs = require("fs/promises")
+const RSC = require("../lib/response-status-code")
 
 const registerFace = async (req, res, next) => {
     const data = req.body
@@ -14,54 +14,51 @@ const registerFace = async (req, res, next) => {
             let realPath = req.protocol + "://" + req.headers["host"] + file.path.replace('public', '')
             realPath = realPath.replaceAll('\\', '/')
             console.log(realPath)
-            const xhr = new XMLHttpRequest()
-            xhr.open('post', config.AI_SERVER_URL+'/api_v3', false)
-            xhr.setRequestHeader('Content-Type', 'application/json')
-            xhr.send(JSON.stringify({ url: realPath, name: data.studentId }))
-            if (xhr.status === 200) {
-                const xhrRes = JSON.parse(xhr.responseText)
-                if (xhrRes.name === 0) {
-                    res.status(RSC.BAD_REQUEST).send('Can\'t recognize!')
-                } else {
-                    res.send(xhrRes)
-                }
-            } else {
-                res.status(RSC.BAD_REQUEST).send('AI Server error with message: '+xhr.responseText)
-                // res.status(RSC.BAD_REQUEST).send(xhr.responseText)
-            }
-            await fs.unlink(file.path).catch(next)
+            axios.post(config.AI_SERVER_URL+'/api_v3/create', {
+                name: data.name,
+                image: realPath
+            }).then((response) => {
+                console.log(response.data)
+                res.status(RSC.OK).send(response.data)
+            }).catch((error) => {
+                console.log(error)
+                res.status(RSC.INTERNAL_SERVER_ERROR).send(error)
+            })
         }
-    } else {
-        res.status(RSC.BAD_REQUEST).send('Empty sent data!')
     }
-    // const xhr = new XMLHttpRequest()
-    // xhr.open('post', config.AI_SERVER_URL+'/api_v3/create', false)
-    // xhr.setRequestHeader('Content-Type', 'application/json')
-    // xhr.send(JSON.stringify({ name: data.name, url: data.url }))
-    // res.send({ status: xhr.status, responseText: xhr.responseText })
 }
 
 const deleteFace = async (req, res, next) => {
     const data = req.body
-    const xhr = new XMLHttpRequest()
-    xhr.open('post', config.AI_SERVER_URL+'/api_v3/delete', false)
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.send(JSON.stringify({ name: data.name }))
-    res.send({ status: xhr.status, responseText: xhr.responseText })
+    axios.post(config.AI_SERVER_URL+'/api_v3/delete', {
+        name: data.name
+    }).then((response) => {
+        console.log(response.data)
+        res.status(RSC.OK).send(response.data)
+    }).catch((error) => {
+        console.log(error)
+        res.status(RSC.INTERNAL_SERVER_ERROR).send(error)
+    })
 }
 
 const scan = async (req, res, next) => {
-    const xhr = new XMLHttpRequest()
-    xhr.open('get', config.AI_SERVER_URL+'/api_v3/scan', false)
-    xhr.send()
-    res.send({ status: xhr.status, responseText: xhr.responseText })
+    axios.get(config.AI_SERVER_URL+'/api_v3/scan').then((response) => {
+        console.log(response.data)
+        res.status(RSC.OK).send(response.data)
+    }).catch((error) => {
+        console.log(error)
+        res.status(RSC.INTERNAL_SERVER_ERROR).send(error)
+    })
 }
 
 const list = async (req, res, next) => {
-    const xhr = new XMLHttpRequest()
-    xhr.open('get', config.AI_SERVER_URL+'/api_v3/list', false)
-    xhr.send()
-    res.send({ status: xhr.status, responseText: xhr.responseText })
+    axios.get(config.AI_SERVER_URL+'/api_v3/list').then((response) => {
+        console.log(response.data)
+        res.status(RSC.OK).send(response.data)
+    }).catch((error) => {
+        console.log(error)
+        res.status(RSC.INTERNAL_SERVER_ERROR).send(error)
+    })
 }
 
 exports.registerFace = registerFace

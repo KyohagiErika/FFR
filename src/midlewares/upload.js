@@ -3,12 +3,14 @@ const multer = require('multer')
 const fs = require('fs')
 const fsSync = require('fs/promises')
 const RSC = require('../lib/response-status-code')
+const path = require('path')
 const imageStorage = multer.diskStorage({
     destination: async (req, file, callback) => {
-        if (!fs.existsSync(__dirname+'/../../'+config.IMAGE_PATH)) {
-            fs.mkdirSync(__dirname+'/../../'+config.IMAGE_PATH, { recursive: true })
+        const dir = path.resolve(__dirname+'/../../'+config.IMAGE_PATH)
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true })
         }
-        callback(null, config.IMAGE_PATH)
+        callback(null, dir)
     },
     filename: (req, file, callback) => {
         const fileInfo = file.mimetype.split('/')
